@@ -6,8 +6,6 @@
 <meta name="theme-color" content="#6edcff">
 <title>Fruit Slice GK Kids</title>
 <style>
-html,body{overflow-x:hidden;}
-
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
 body{background:#9cecff;touch-action:none;color:#18324a;-webkit-user-select:none;user-select:none}
@@ -31,8 +29,8 @@ header{display:flex;justify-content:space-between;align-items:center;padding:max
 background:linear-gradient(#72dfff 0 57%,#8de278 57% 100%);box-shadow:inset 0 0 0 3px #fff8,0 7px 18px #26705330}
 .cloud{position:absolute;background:#fff9;width:90px;height:25px;border-radius:30px;top:8%;left:5%}.cloud:before,.cloud:after{content:"";position:absolute;background:#fff9;border-radius:50%}.cloud:before{width:35px;height:35px;left:17px;top:-17px}.cloud:after{width:45px;height:45px;left:43px;top:-23px}
 .c2{left:auto;right:3%;top:20%;transform:scale(.75)}
-#animal{position:absolute;bottom:2.5%;left:50%;transform:translateX(-50%);font-size:82px;z-index:4;filter:drop-shadow(0 6px 3px #0003)}
-#knife{position:absolute;bottom:13%;left:calc(50% + 30px);z-index:6;font-size:42px;transform:rotate(-35deg);transform-origin:80% 80%;filter:drop-shadow(2px 4px 2px #0004);transition:transform .12s}
+#animal{position:absolute;bottom:2.5%;left:50%;transform:translateX(-50%);font-size:82px;z-index:15;filter:drop-shadow(0 6px 3px #0003)}
+#knife{position:absolute;bottom:13%;left:calc(50% + 30px);z-index:20;font-size:42px;transform:rotate(-35deg);transform-origin:80% 80%;filter:drop-shadow(2px 4px 2px #0004);transition:transform .12s}
 #knife.swing{animation:knifeSwing .25s ease-out}
 @keyframes knifeSwing{0%{transform:rotate(-35deg) translate(0,0)}45%{transform:rotate(-125deg) translate(-12px,-18px) scale(1.08)}100%{transform:rotate(-35deg) translate(0,0)}}
 #slash{position:absolute;width:110px;height:8px;background:#fff;border-radius:20px;opacity:0;z-index:19;transform:rotate(-25deg);box-shadow:0 0 12px #fff}
@@ -49,7 +47,7 @@ background:linear-gradient(#72dfff 0 57%,#8de278 57% 100%);box-shadow:inset 0 0 
 #knife.swing{animation:knifeSwing .25s ease-out}
 @keyframes knifeSwing{0%{transform:rotate(-38deg)}45%{transform:rotate(-125deg) translate(-12px,-20px) scale(1.1)}100%{transform:rotate(-38deg)}}
 #animalName{position:absolute;bottom:1%;left:50%;transform:translateX(-50%);background:#fff;padding:3px 9px;border-radius:10px;font-size:11px;font-weight:900;z-index:4}
-.fruit{box-sizing:border-box;position:absolute;top:-90px;width:min(138px,29vw);min-width:104px;height:82px;border:4px solid #fff;border-radius:24px;display:flex;align-items:center;justify-content:center;text-align:center;padding:7px;font-size:17px;font-weight:1000;line-height:1.05;box-shadow:0 7px 13px #0003;z-index:5;user-select:none;touch-action:none}
+.fruit{position:absolute;top:-90px;width:min(138px,29vw);min-width:104px;height:82px;border:4px solid #fff;border-radius:24px;display:flex;align-items:center;justify-content:center;text-align:center;padding:7px;font-size:17px;font-weight:1000;line-height:1.05;box-shadow:0 7px 13px #0003;z-index:5;user-select:none;touch-action:none}
 .fruit:after{content:"🍃";position:absolute;right:8px;top:-18px;font-size:18px}.fruit.sliced{animation:fruitSlice .34s ease-out forwards}
 @keyframes fruitSlice{
   0%{opacity:1;transform:scale(1) rotate(0)}
@@ -63,9 +61,118 @@ background:linear-gradient(#72dfff 0 57%,#8de278 57% 100%);box-shadow:inset 0 0 
 footer{padding:5px 9px max(7px,env(safe-area-inset-bottom));display:flex;gap:7px}.footbtn{flex:1;padding:10px;border-radius:15px;background:#fff;font-weight:900;box-shadow:0 3px 8px #0002}
 #result{display:none;background:#18324acc}.resultcard{background:white;border-radius:30px;padding:24px;text-align:center;width:min(360px,100%)}.resultcard .hero{font-size:65px}.resultcard h2{margin:4px 0}.resultcard p{color:#60798a}
 .progress{height:7px;background:#ffffff88;margin:0 12px 5px;border-radius:10px;overflow:hidden}.progress i{display:block;height:100%;background:#ff9d3c;width:0%;transition:.2s}
+
+/* KIDS DELUXE VISUALS */
+body::before,body::after{
+  content:"";position:fixed;z-index:0;pointer-events:none;border-radius:50%;
+  filter:blur(1px);opacity:.35;animation:floatBubble 7s ease-in-out infinite;
+}
+body::before{width:90px;height:90px;left:5vw;top:18vh;background:#fff}
+body::after{width:55px;height:55px;right:7vw;top:32vh;background:#ffe78a;animation-delay:-3s}
+#app{position:relative;z-index:1}
+#app:before{
+  content:"✦  ✧  ⭐  ✦  🍃  ✧  ⭐  ✦";
+  position:absolute;left:0;right:0;top:18%;font-size:20px;letter-spacing:16px;
+  opacity:.20;pointer-events:none;white-space:nowrap;overflow:hidden;
+  animation:skyDrift 18s linear infinite;
+}
+.logo{animation:logoBounce 2.4s ease-in-out infinite;transform-origin:center}
+.pill{transition:transform .2s ease}
+.pill:active{transform:scale(.94)}
+#question{animation:cardFloat 3.2s ease-in-out infinite}
+.cloud{animation:cloudDrift 14s linear infinite}
+.c2{animation-duration:19s;animation-delay:-7s}
+#animal{animation:animalIdle 1.8s ease-in-out infinite}
+#animal.bounce{animation:animalHappy .55s ease-out!important}
+.fruit{
+  box-shadow:0 8px 18px rgba(0,60,90,.16),inset 0 2px 0 rgba(255,255,255,.5);
+  animation:fruitWiggle 2.2s ease-in-out infinite;
+}
+.fruit:nth-child(2){animation-delay:-.7s}.fruit:nth-child(3){animation-delay:-1.3s}
+#knife{filter:drop-shadow(0 5px 5px rgba(0,0,0,.18))}
+#result{backdrop-filter:blur(4px)}
+.resultcard{animation:popIn .45s cubic-bezier(.2,1.4,.4,1)}
+.mainbtn{animation:buttonPulse 2s ease-in-out infinite}
+#home .panel{animation:homePop .7s cubic-bezier(.2,1.2,.4,1)}
+#home .hero{animation:heroFloat 2s ease-in-out infinite}
+#animals .panel{animation:homePop .55s cubic-bezier(.2,1.2,.4,1)}
+.animal{transition:transform .18s ease,filter .18s ease}
+.animal:active{transform:scale(.92) rotate(-2deg);filter:brightness(1.12)}
+.deluxe-spark{
+  position:fixed;z-index:20;pointer-events:none;font-size:20px;
+  animation:sparkFly 1s ease-out forwards;
+}
+.confetti{
+  position:fixed;z-index:30;pointer-events:none;width:9px;height:14px;border-radius:3px;
+  animation:confettiFall 1.15s cubic-bezier(.2,.7,.3,1) forwards;
+}
+#launch{
+  position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:radial-gradient(circle at 50% 35%,#7ee8ff 0,#168fe7 55%,#0753ad 100%);
+  color:white;touch-action:none;
+}
+#launch:before{
+  content:"";position:absolute;inset:-20%;background:
+  radial-gradient(circle at 20% 25%,rgba(255,255,255,.45) 0 5px,transparent 6px),
+  radial-gradient(circle at 80% 30%,rgba(255,255,255,.35) 0 7px,transparent 8px),
+  radial-gradient(circle at 35% 75%,rgba(255,220,80,.5) 0 6px,transparent 7px);
+  background-size:180px 180px,230px 230px,260px 260px;animation:launchStars 9s linear infinite;
+}
+#launch .launch-card{position:relative;width:min(88vw,430px);text-align:center;padding:24px 18px}
+#launch .launch-icon{
+  width:min(62vw,280px);height:min(62vw,280px);margin:auto;border-radius:28%;
+  object-fit:cover;box-shadow:0 18px 40px rgba(0,20,80,.35),0 0 0 6px rgba(255,255,255,.28);
+  animation:iconPop 1.1s cubic-bezier(.16,1.4,.3,1),iconFloat 2.6s 1.1s ease-in-out infinite;
+}
+#launch h1{margin:18px 0 4px;font-size:clamp(30px,9vw,54px);font-weight:1000;
+  letter-spacing:-1px;text-shadow:0 4px 0 rgba(0,50,120,.28)}
+#launch .tag{font-size:16px;font-weight:900;letter-spacing:1px;opacity:.95}
+#launch .loading{height:10px;background:rgba(255,255,255,.25);border-radius:99px;overflow:hidden;margin:24px auto 8px;max-width:290px}
+#launch .loading i{display:block;height:100%;width:0;background:white;border-radius:99px;animation:loadBar 1.55s ease-out forwards}
+#launch .ready{font-size:13px;font-weight:800;opacity:.85}
+#launch.hide{animation:launchOut .45s ease forwards;pointer-events:none}
+@keyframes floatBubble{50%{transform:translateY(-18px) scale(1.05)}}
+@keyframes skyDrift{from{transform:translateX(-15%)}to{transform:translateX(15%)}}
+@keyframes logoBounce{50%{transform:translateY(-2px) scale(1.03)}}
+@keyframes cardFloat{50%{transform:translateY(-2px)}}
+@keyframes cloudDrift{50%{transform:translateX(24px)}}
+@keyframes animalIdle{50%{transform:translateY(-5px) rotate(-1deg)}}
+@keyframes animalHappy{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-18px) scale(1.06) rotate(-3deg)}70%{transform:translateY(3px) scale(.98) rotate(2deg)}100%{transform:translateY(0) scale(1)}}
+@keyframes fruitWiggle{0%,100%{transform:rotate(0)}50%{transform:rotate(1.2deg)}}
+@keyframes popIn{from{opacity:0;transform:scale(.75) translateY(25px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes buttonPulse{0%,100%{box-shadow:0 5px 0 rgba(0,0,0,.12)}50%{box-shadow:0 8px 20px rgba(0,0,0,.15)}}
+@keyframes homePop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes heroFloat{50%{transform:translateY(-8px) scale(1.05)}}
+@keyframes sparkFly{to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.4) rotate(35deg)}}
+@keyframes confettiFall{to{opacity:0;transform:translate(var(--x),var(--y)) rotate(540deg)}}
+@keyframes launchStars{to{transform:rotate(12deg) translate(15px,10px)}}
+@keyframes iconPop{from{opacity:0;transform:scale(.45) rotate(-10deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes iconFloat{50%{transform:translateY(-8px) rotate(1deg)}}
+@keyframes loadBar{to{width:100%}}
+@keyframes launchOut{to{opacity:0;transform:scale(1.05)}}
+@media(max-width:380px){
+  #launch .launch-card{padding:12px}
+  #launch .launch-icon{width:54vw;height:54vw}
+  #launch h1{font-size:30px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
+}
+
 </style>
 </head>
 <body>
+
+<div id="launch" aria-label="Fruit Slice GK launch screen">
+  <div class="launch-card">
+    <img class="launch-icon" src="./icon-512.png" alt="Fruit Slice GK">
+    <h1>Fruit Slice GK</h1>
+    <div class="tag">LEARN • PLAY • GROW 🌟</div>
+    <div class="loading"><i></i></div>
+    <div class="ready">Get ready to slice & learn!</div>
+  </div>
+</div>
+
 <div id="app">
 <header><div class="pill">⭐ <span id="score">0</span></div><div class="logo">🍎 Fruit Slice GK</div><div class="pill">❤️ <span id="lives">3</span></div></header>
 <div class="progress"><i id="bar"></i></div>
@@ -139,7 +246,7 @@ function spawn(){
  let y=-90,speed=Math.min(0.62 + Math.floor(round/30)*0.035, 0.95);
  playing=false;
  setTimeout(()=>{ if(myToken===spawnToken && $("result").style.display!=="flex"){playing=true;
-   timer=setInterval(()=>{if(!playing)return;y+=speed;speed+=0.0018;fallers.forEach((d,i)=>d.style.top=(y+i*18)+"px");if(y>$("game").clientHeight-145){clearInterval(timer);miss()}},16);
+   timer=setInterval(()=>{if(!playing)return;y+=speed;speed+=0.0018;fallers.forEach((d,i)=>d.style.top=(y+i*18)+"px");const animalTop=$("animal").offsetTop; const stopY=Math.max(120,animalTop-92); if(y>stopY){clearInterval(timer);miss()}},16);
  }},650);
 }
 function playSliceSound(ok){ try{if(navigator.vibrate)navigator.vibrate(ok?[18,25,18]:35)}catch(e){}
@@ -164,7 +271,7 @@ function slice(d){
  d.classList.add("sliced");
  setTimeout(()=>ok?correct():wrong(),300)
 }
-function correct(){score+=10;$("score").textContent=score;$("animal").classList.remove("bounce");void $("animal").offsetWidth;$("animal").classList.add("bounce");show("🎉","SUPER SLICE!","Correct! +10 points");}
+function correct(){score+=10;$("score").textContent=score;$("animal").classList.remove("bounce");void $("animal").offsetWidth;$("animal").classList.add("bounce");if(window.deluxeConfetti)deluxeConfetti();if(window.deluxeSparks)deluxeSparks();show("🎉","SUPER SLICE!","Correct! +10 points");}
 function wrong(){lives--; $("lives").textContent=lives; if(lives<=0)show("💪","GREAT TRY!","Final score: "+score);else show("🙂","ALMOST!","The correct answer is "+current[3]);}
 function miss(){wrong()}
 function show(e,t,p){$("rEmoji").textContent=e;$("rTitle").textContent=t;$("rText").textContent=p;$("result").style.display="flex";playing=false}
@@ -178,5 +285,38 @@ document.querySelectorAll(".animal").forEach(b=>b.onclick=()=>{animal=[b.dataset
 let down=false,lastX=0,lastY=0;
 $("game").addEventListener("pointermove",e=>{if(!down||!playing)return;const r=$("game").getBoundingClientRect();lastX=e.clientX-r.left;lastY=e.clientY-r.top;fallers.forEach(d=>{const x=d.offsetLeft,y=d.offsetTop,w=d.offsetWidth,h=d.offsetHeight;if(lastX>x-42&&lastX<x+w+42&&lastY>y-42&&lastY<y+h+42)slice(d)})});
 $("game").addEventListener("pointerdown",e=>{down=true});window.addEventListener("pointerup",()=>down=false);
+
+// Deluxe launch + celebration effects
+(function(){
+  const launch=document.getElementById('launch');
+  const hideLaunch=()=>{if(!launch||launch.classList.contains('hide'))return;launch.classList.add('hide');setTimeout(()=>launch.remove(),500)};
+  setTimeout(hideLaunch,1700);
+  if(launch) launch.addEventListener('pointerdown',hideLaunch,{once:true});
+
+  window.deluxeConfetti=function(){
+    const icons=['⭐','✨','🍎','🍓','🍊','🍉','🌟','💫'];
+    for(let i=0;i<22;i++){
+      const c=document.createElement('div');c.className='confetti';
+      c.textContent=icons[Math.floor(Math.random()*icons.length)];
+      c.style.left=(25+Math.random()*50)+'vw';c.style.top=(32+Math.random()*15)+'vh';
+      c.style.setProperty('--x',((Math.random()-.5)*70)+'vw');
+      c.style.setProperty('--y',(35+Math.random()*45)+'vh');
+      c.style.animationDelay=(Math.random()*.15)+'s';
+      document.body.appendChild(c);setTimeout(()=>c.remove(),1400);
+    }
+  };
+  window.deluxeSparks=function(){
+    const icons=['✨','⭐','💫','🍎'];
+    for(let i=0;i<10;i++){
+      const e=document.createElement('div');e.className='deluxe-spark';
+      e.textContent=icons[Math.floor(Math.random()*icons.length)];
+      e.style.left=(15+Math.random()*70)+'vw';e.style.top=(15+Math.random()*55)+'vh';
+      e.style.setProperty('--dx',((Math.random()-.5)*100)+'px');
+      e.style.setProperty('--dy',((Math.random()-.5)*100)+'px');
+      document.body.appendChild(e);setTimeout(()=>e.remove(),1100);
+    }
+  };
+})();
+
 </script>
 </body></html>
