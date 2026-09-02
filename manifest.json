@@ -2,7 +2,7 @@
   "id": "./",
   "name": "Fruit Slice GK",
   "short_name": "Fruit Slice GK",
-  "description": "A colorful, kid-friendly GK fruit slicing game.",
+  "description": "A colorful GK fruit-slicing game for kids aged 6\u201310.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

@@ -62,117 +62,97 @@ footer{padding:5px 9px max(7px,env(safe-area-inset-bottom));display:flex;gap:7px
 #result{display:none;background:#18324acc}.resultcard{background:white;border-radius:30px;padding:24px;text-align:center;width:min(360px,100%)}.resultcard .hero{font-size:65px}.resultcard h2{margin:4px 0}.resultcard p{color:#60798a}
 .progress{height:7px;background:#ffffff88;margin:0 12px 5px;border-radius:10px;overflow:hidden}.progress i{display:block;height:100%;background:#ff9d3c;width:0%;transition:.2s}
 
-/* KIDS DELUXE VISUALS */
-body::before,body::after{
-  content:"";position:fixed;z-index:0;pointer-events:none;border-radius:50%;
-  filter:blur(1px);opacity:.35;animation:floatBubble 7s ease-in-out infinite;
-}
-body::before{width:90px;height:90px;left:5vw;top:18vh;background:#fff}
-body::after{width:55px;height:55px;right:7vw;top:32vh;background:#ffe78a;animation-delay:-3s}
-#app{position:relative;z-index:1}
-#app:before{
-  content:"✦  ✧  ⭐  ✦  🍃  ✧  ⭐  ✦";
-  position:absolute;left:0;right:0;top:18%;font-size:20px;letter-spacing:16px;
-  opacity:.20;pointer-events:none;white-space:nowrap;overflow:hidden;
-  animation:skyDrift 18s linear infinite;
-}
-.logo{animation:logoBounce 2.4s ease-in-out infinite;transform-origin:center}
-.pill{transition:transform .2s ease}
-.pill:active{transform:scale(.94)}
-#question{animation:cardFloat 3.2s ease-in-out infinite}
-.cloud{animation:cloudDrift 14s linear infinite}
-.c2{animation-duration:19s;animation-delay:-7s}
-#animal{animation:animalIdle 1.8s ease-in-out infinite}
-#animal.bounce{animation:animalHappy .55s ease-out!important}
-.fruit{
-  box-shadow:0 8px 18px rgba(0,60,90,.16),inset 0 2px 0 rgba(255,255,255,.5);
-  animation:fruitWiggle 2.2s ease-in-out infinite;
-}
-.fruit:nth-child(2){animation-delay:-.7s}.fruit:nth-child(3){animation-delay:-1.3s}
-#knife{filter:drop-shadow(0 5px 5px rgba(0,0,0,.18))}
-#result{backdrop-filter:blur(4px)}
-.resultcard{animation:popIn .45s cubic-bezier(.2,1.4,.4,1)}
-.mainbtn{animation:buttonPulse 2s ease-in-out infinite}
-#home .panel{animation:homePop .7s cubic-bezier(.2,1.2,.4,1)}
-#home .hero{animation:heroFloat 2s ease-in-out infinite}
-#animals .panel{animation:homePop .55s cubic-bezier(.2,1.2,.4,1)}
-.animal{transition:transform .18s ease,filter .18s ease}
-.animal:active{transform:scale(.92) rotate(-2deg);filter:brightness(1.12)}
-.deluxe-spark{
-  position:fixed;z-index:20;pointer-events:none;font-size:20px;
-  animation:sparkFly 1s ease-out forwards;
-}
-.confetti{
-  position:fixed;z-index:30;pointer-events:none;width:9px;height:14px;border-radius:3px;
-  animation:confettiFall 1.15s cubic-bezier(.2,.7,.3,1) forwards;
-}
-#launch{
-  position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
-  overflow:hidden;background:radial-gradient(circle at 50% 35%,#7ee8ff 0,#168fe7 55%,#0753ad 100%);
-  color:white;touch-action:none;
-}
-#launch:before{
-  content:"";position:absolute;inset:-20%;background:
-  radial-gradient(circle at 20% 25%,rgba(255,255,255,.45) 0 5px,transparent 6px),
-  radial-gradient(circle at 80% 30%,rgba(255,255,255,.35) 0 7px,transparent 8px),
-  radial-gradient(circle at 35% 75%,rgba(255,220,80,.5) 0 6px,transparent 7px);
-  background-size:180px 180px,230px 230px,260px 260px;animation:launchStars 9s linear infinite;
-}
-#launch .launch-card{position:relative;width:min(88vw,430px);text-align:center;padding:24px 18px}
-#launch .launch-icon{
-  width:min(62vw,280px);height:min(62vw,280px);margin:auto;border-radius:28%;
-  object-fit:cover;box-shadow:0 18px 40px rgba(0,20,80,.35),0 0 0 6px rgba(255,255,255,.28);
-  animation:iconPop 1.1s cubic-bezier(.16,1.4,.3,1),iconFloat 2.6s 1.1s ease-in-out infinite;
-}
-#launch h1{margin:18px 0 4px;font-size:clamp(30px,9vw,54px);font-weight:1000;
-  letter-spacing:-1px;text-shadow:0 4px 0 rgba(0,50,120,.28)}
-#launch .tag{font-size:16px;font-weight:900;letter-spacing:1px;opacity:.95}
-#launch .loading{height:10px;background:rgba(255,255,255,.25);border-radius:99px;overflow:hidden;margin:24px auto 8px;max-width:290px}
-#launch .loading i{display:block;height:100%;width:0;background:white;border-radius:99px;animation:loadBar 1.55s ease-out forwards}
-#launch .ready{font-size:13px;font-weight:800;opacity:.85}
-#launch.hide{animation:launchOut .45s ease forwards;pointer-events:none}
-@keyframes floatBubble{50%{transform:translateY(-18px) scale(1.05)}}
-@keyframes skyDrift{from{transform:translateX(-15%)}to{transform:translateX(15%)}}
-@keyframes logoBounce{50%{transform:translateY(-2px) scale(1.03)}}
-@keyframes cardFloat{50%{transform:translateY(-2px)}}
-@keyframes cloudDrift{50%{transform:translateX(24px)}}
-@keyframes animalIdle{50%{transform:translateY(-5px) rotate(-1deg)}}
-@keyframes animalHappy{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-18px) scale(1.06) rotate(-3deg)}70%{transform:translateY(3px) scale(.98) rotate(2deg)}100%{transform:translateY(0) scale(1)}}
-@keyframes fruitWiggle{0%,100%{transform:rotate(0)}50%{transform:rotate(1.2deg)}}
-@keyframes popIn{from{opacity:0;transform:scale(.75) translateY(25px)}to{opacity:1;transform:scale(1) translateY(0)}}
-@keyframes buttonPulse{0%,100%{box-shadow:0 5px 0 rgba(0,0,0,.12)}50%{box-shadow:0 8px 20px rgba(0,0,0,.15)}}
-@keyframes homePop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
-@keyframes heroFloat{50%{transform:translateY(-8px) scale(1.05)}}
-@keyframes sparkFly{to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.4) rotate(35deg)}}
-@keyframes confettiFall{to{opacity:0;transform:translate(var(--x),var(--y)) rotate(540deg)}}
-@keyframes launchStars{to{transform:rotate(12deg) translate(15px,10px)}}
-@keyframes iconPop{from{opacity:0;transform:scale(.45) rotate(-10deg)}to{opacity:1;transform:scale(1) rotate(0)}}
-@keyframes iconFloat{50%{transform:translateY(-8px) rotate(1deg)}}
-@keyframes loadBar{to{width:100%}}
-@keyframes launchOut{to{opacity:0;transform:scale(1.05)}}
-@media(max-width:380px){
-  #launch .launch-card{padding:12px}
-  #launch .launch-icon{width:54vw;height:54vw}
-  #launch h1{font-size:30px}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
-}
+/* ===== KIDS DELUXE VISUAL UPGRADE ===== */
+:root{--sky:#6edcff;--blue:#1478d4;--deep:#174f70;--cream:#fffdf3;--orange:#ff9d3c;--pink:#ff6f91;--green:#69d66c;--gold:#ffd447}
+body{font-family:"Comic Sans MS","Trebuchet MS",system-ui,sans-serif;background:linear-gradient(180deg,#63d9ff,#f7ffff)}
+#app{background:linear-gradient(180deg,#69dcff 0%,#c9f6ff 52%,#eaffd9 100%);box-shadow:0 0 45px #0b77b344}
+header{padding-top:max(10px,env(safe-area-inset-top));position:relative}
+header:before{content:"✦  ✧  ⭐  ✧  ✦";position:absolute;left:50%;top:3px;transform:translateX(-50%);font-size:11px;letter-spacing:8px;color:#fff;opacity:.8;pointer-events:none;animation:twinkle 2s ease-in-out infinite}
+.logo{font-size:21px;color:#124d70;text-shadow:0 3px 0 #fff,0 0 10px #fff8;animation:logoWiggle 3s ease-in-out infinite}
+.pill{border:3px solid #ffffffaa;box-shadow:0 5px 0 #0001,0 8px 18px #1670a322;min-width:62px;text-align:center;animation:pillBob 2.5s ease-in-out infinite}
+.pill:first-child{animation-delay:-.5s}.pill:last-child{animation-delay:-1.1s}
+.progress{height:9px;background:#ffffffaa;border:2px solid #fff8;box-shadow:inset 0 2px 4px #0001;margin:0 12px 7px}.progress i{background:linear-gradient(90deg,#ff9d3c,#ffd447,#ff7d8f);box-shadow:0 0 8px #ffd447}
+#question{margin:3px 12px 8px;border:3px solid #fff;box-shadow:0 8px 0 #0e7ca51a,0 12px 28px #0e7ca522;animation:questionFloat 3s ease-in-out infinite}
+#question b{font-size:19px;text-shadow:0 1px #fff}
+#question small{font-weight:800}
+#game{margin:0 9px 7px;border:4px solid #fff9;box-shadow:inset 0 0 0 2px #6edcff88,0 10px 25px #26705344;background:linear-gradient(#69dfff 0 57%,#8de278 57% 100%)}
+#game:before{content:"☀️";position:absolute;right:7%;top:6%;font-size:34px;filter:drop-shadow(0 3px 3px #fff);animation:sunPulse 3s ease-in-out infinite}
+#game:after{content:"🌼  🌸  🌼  🌸  🌼";position:absolute;bottom:1%;left:4%;right:4%;font-size:17px;letter-spacing:7px;opacity:.8;z-index:1;pointer-events:none;animation:flowersSway 3.5s ease-in-out infinite}
+.cloud{animation:cloudFloat 9s ease-in-out infinite}.c2{animation-delay:-4s}
+#animal{z-index:12;filter:drop-shadow(0 9px 5px #0003);transform:translateX(-50%);animation:animalIdle 2.2s ease-in-out infinite}
+#animal.bounce{animation:animalHappy .62s cubic-bezier(.2,1.6,.4,1)}
+#animalName{z-index:14;border:2px solid #fff;box-shadow:0 3px 7px #0002;color:#174f70}
+#knife{z-index:16;filter:drop-shadow(0 5px 3px #0005);}
+.fruit{z-index:10;border-width:4px;box-shadow:0 9px 15px #0003,inset 0 2px 0 #fff9;transition:filter .15s}
+.fruit:hover{filter:brightness(1.06)}
+.fruit:before{content:"✦";position:absolute;left:9px;top:7px;color:#fff9;font-size:12px;animation:shine 1.5s ease-in-out infinite}
+footer{background:linear-gradient(180deg,#eaffff00,#d8fbffcc);padding-top:6px}
+.footbtn{border:3px solid #fff;box-shadow:0 5px 0 #0002,0 7px 15px #0001;transition:transform .15s,box-shadow .15s;background:#fff}
+.footbtn:active,.mainbtn:active,.altbtn:active{transform:translateY(3px);box-shadow:0 2px 0 #0002}
+.mainbtn{background:linear-gradient(#ffb44e,#ff8d31);border:3px solid #fff;box-shadow:0 6px 0 #d56f1b,0 10px 18px #ff8d3133;animation:playPulse 2s ease-in-out infinite}
+.altbtn{border:3px solid #fff;background:linear-gradient(#effcff,#d9f7ff);box-shadow:0 5px 0 #a9dce9}
+#home,#animals,#result{background:linear-gradient(135deg,#67ddff,#dffbff 50%,#d7ffd0);overflow:hidden}
+#home:before,#animals:before,#result:before{content:"⭐  ✨  🍎  🌈  ✨  ⭐  🍓";position:absolute;inset:5% -30%;font-size:25px;letter-spacing:22px;opacity:.22;white-space:nowrap;animation:decorMove 18s linear infinite;pointer-events:none}
+#home .panel,#animals .panel,#result .resultcard{position:relative;z-index:2;border:5px solid #fff;box-shadow:0 15px 35px #176c9430,0 4px 0 #0001;background:linear-gradient(#fff,#f8ffff);animation:panelIn .55s cubic-bezier(.2,1.3,.4,1)}
+#home .panel{padding:26px 21px;overflow:hidden}
+#home .panel:after{content:"🍎   🍓   🍊   🍉";position:absolute;left:-15%;right:-15%;bottom:2px;font-size:24px;opacity:.16;letter-spacing:12px;animation:fruitDrift 7s ease-in-out infinite}
+#home .hero{font-size:74px;filter:drop-shadow(0 8px 4px #0002);animation:heroDance 2.2s ease-in-out infinite}
+#home h1{font-size:34px;color:#126ca0;text-shadow:0 3px 0 #b9f0ff;margin:7px 0}
+#home p{font-weight:700}
+#animals .panel{max-height:90dvh;overflow:auto;padding:20px 15px}
+#animals h1{color:#126ca0;text-shadow:0 2px 0 #c9f6ff}
+.animalGrid{gap:11px}
+.animal{border:3px solid #fff;background:linear-gradient(#f4fdff,#ddf8ff);box-shadow:0 5px 0 #b5e6ef,0 8px 14px #1d738522;transition:transform .16s,filter .16s;position:relative;overflow:hidden}
+.animal:after{content:"✨";position:absolute;right:5px;top:3px;font-size:12px;opacity:.7}
+.animal:nth-child(3n){background:linear-gradient(#fffdf1,#fff0c9)}.animal:nth-child(4n){background:linear-gradient(#f6fff3,#dff9dc)}
+.animal:active{transform:translateY(3px) scale(.95)}
+.mini{filter:drop-shadow(0 4px 2px #0002);animation:miniBounce 2.4s ease-in-out infinite}.animal:nth-child(2) .mini{animation-delay:-.3s}.animal:nth-child(3) .mini{animation-delay:-.6s}.animal:nth-child(4) .mini{animation-delay:-.9s}
+#result{background:linear-gradient(135deg,#1766b8dd,#7c4fcddd);backdrop-filter:blur(4px)}
+#result .resultcard{width:min(390px,100%);padding:25px 20px;overflow:hidden}
+#result .resultcard:before{content:"🎈  ⭐  ✨  ⭐  🎈";display:block;font-size:20px;letter-spacing:8px;animation:twinkle 1.5s ease-in-out infinite}
+#result .hero{font-size:78px;filter:drop-shadow(0 7px 3px #0002);animation:resultPop .7s cubic-bezier(.2,1.5,.4,1)}
+#result h2{font-size:30px;color:#14638d;text-shadow:0 2px #bceeff}
+#result p{font-size:16px;font-weight:800}
+/* launch */
+#launch{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 28%,#9bf1ff 0,#21a4e9 45%,#1550b8 100%);color:#fff}
+#launch:before{content:"⭐  ✨  🍎  🌈  🍓  ✨  ⭐  🍊  💫";position:absolute;inset:4% -30%;font-size:25px;letter-spacing:24px;opacity:.8;animation:launchDrift 13s linear infinite;white-space:nowrap}
+#launch:after{content:"";position:absolute;width:160vw;height:160vw;border-radius:50%;border:2px solid #ffffff44;box-shadow:0 0 0 40px #ffffff12,0 0 0 90px #ffffff0a;animation:launchRing 5s ease-in-out infinite}
+#launch .launch-card{position:relative;z-index:2;width:min(90vw,430px);text-align:center;padding:22px 18px;background:#ffffff18;border:3px solid #ffffff55;border-radius:35px;backdrop-filter:blur(7px);box-shadow:0 20px 50px #003b8c44}
+#launch .launch-icon{width:min(60vw,245px);height:min(60vw,245px);object-fit:cover;border-radius:28%;border:6px solid #fff;box-shadow:0 16px 35px #003b8c66,0 0 0 8px #fff3;animation:launchIcon .9s cubic-bezier(.2,1.5,.4,1),launchFloat 2.6s 1s ease-in-out infinite}
+#launch h1{font-size:clamp(31px,9vw,50px);margin:15px 0 4px;font-weight:1000;letter-spacing:-1px;text-shadow:0 5px 0 #1253a8,0 0 14px #fff6}
+#launch .tag{font-weight:1000;letter-spacing:1px;font-size:15px}
+#launch .loading{height:11px;background:#ffffff33;border:2px solid #fff8;border-radius:99px;overflow:hidden;margin:22px auto 7px;max-width:290px}
+#launch .loading i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffd447,#fff,#ff91ad);border-radius:99px;animation:load 1.5s ease-out forwards}
+#launch .ready{font-size:13px;font-weight:900;opacity:.9}
+#launch.hide{animation:launchHide .5s ease forwards;pointer-events:none}
+@keyframes twinkle{50%{opacity:.35;transform:scale(1.05)}}
+@keyframes logoWiggle{0%,100%{transform:rotate(0)}50%{transform:rotate(-1deg) scale(1.03)}}
+@keyframes pillBob{50%{transform:translateY(-2px)}}
+@keyframes questionFloat{50%{transform:translateY(-2px)}}
+@keyframes sunPulse{50%{transform:scale(1.12) rotate(4deg)}}
+@keyframes flowersSway{50%{transform:translateX(8px) rotate(1deg)}}
+@keyframes cloudFloat{50%{transform:translateX(18px)}}
+@keyframes animalIdle{0%,100%{transform:translateX(-50%) translateY(0) rotate(0)}50%{transform:translateX(-50%) translateY(-5px) rotate(-1deg)}}
+@keyframes animalHappy{0%{transform:translateX(-50%) scale(1)}30%{transform:translateX(-50%) translateY(-19px) scale(1.08) rotate(-3deg)}60%{transform:translateX(-50%) translateY(2px) scale(.97) rotate(3deg)}100%{transform:translateX(-50%) scale(1)}}
+@keyframes shine{50%{opacity:.2;transform:scale(1.4) rotate(15deg)}}
+@keyframes playPulse{50%{transform:scale(1.02);box-shadow:0 7px 0 #d56f1b,0 13px 25px #ff8d3150}}
+@keyframes panelIn{from{opacity:0;transform:translateY(18px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes heroDance{0%,100%{transform:translateY(0) rotate(0)}35%{transform:translateY(-7px) rotate(-4deg)}70%{transform:translateY(-2px) rotate(4deg)}}
+@keyframes miniBounce{50%{transform:translateY(-5px) rotate(2deg)}}
+@keyframes resultPop{from{opacity:0;transform:scale(.5) rotate(-10deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes decorMove{to{transform:translateX(28%)}}@keyframes fruitDrift{50%{transform:translateX(20px)}}
+@keyframes launchDrift{to{transform:translateX(30%) translateY(10px)}}
+@keyframes launchRing{50%{transform:scale(.88);opacity:.45}}
+@keyframes launchIcon{from{opacity:0;transform:scale(.35) rotate(-14deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes launchFloat{50%{transform:translateY(-8px) rotate(1deg)}}
+@keyframes load{to{width:100%}}@keyframes launchHide{to{opacity:0;transform:scale(1.05)}}
+@media(max-width:380px){.animalGrid{gap:7px}.animal{padding:7px 2px}.mini{font-size:36px}#home .hero{font-size:64px}#question b{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
 
 </style>
 </head>
 <body>
-
-<div id="launch" aria-label="Fruit Slice GK launch screen">
-  <div class="launch-card">
-    <img class="launch-icon" src="./icon-512.png" alt="Fruit Slice GK">
-    <h1>Fruit Slice GK</h1>
-    <div class="tag">LEARN • PLAY • GROW 🌟</div>
-    <div class="loading"><i></i></div>
-    <div class="ready">Get ready to slice & learn!</div>
-  </div>
-</div>
-
+<div id="launch"><div class="launch-card"><img class="launch-icon" src="./icon-512.png" alt="Fruit Slice GK"><h1>Fruit Slice GK</h1><div class="tag">LEARN • PLAY • GROW 🌟</div><div class="loading"><i></i></div><div class="ready">🍎 Get ready to slice & learn! 🦁</div></div></div>
 <div id="app">
 <header><div class="pill">⭐ <span id="score">0</span></div><div class="logo">🍎 Fruit Slice GK</div><div class="pill">❤️ <span id="lives">3</span></div></header>
 <div class="progress"><i id="bar"></i></div>
@@ -180,14 +160,19 @@ body::after{width:55px;height:55px;right:7vw;top:32vh;background:#ffe78a;animati
 <div id="game">
 <div class="cloud"></div><div class="cloud c2"></div>
 <div id="blade"></div><div id="slash"></div><div id="knife">🔪</div><div id="animal"><svg class="char" viewBox="0 0 160 180" aria-label="Lion" role="img">
-<circle cx="80" cy="58" r="43" fill="#c9862e"/><circle cx="80" cy="61" r="30" fill="#f0b84d"/>
-<circle cx="49" cy="30" r="13" fill="#9a6025"/><circle cx="111" cy="30" r="13" fill="#9a6025"/>
-<circle cx="68" cy="58" r="4" fill="#182a36"/><circle cx="92" cy="58" r="4" fill="#182a36"/>
-<path d="M72 72 Q80 80 88 72" fill="none" stroke="#633a20" stroke-width="4" stroke-linecap="round"/>
-<rect x="48" y="93" width="64" height="60" rx="28" fill="#e8a63d"/>
-<rect x="28" y="103" width="23" height="55" rx="12" fill="#e8a63d"/><rect x="109" y="103" width="23" height="55" rx="12" fill="#e8a63d"/>
-<rect x="55" y="145" width="20" height="28" rx="10" fill="#b8752a"/><rect x="85" y="145" width="20" height="28" rx="10" fill="#b8752a"/>
-<path d="M36 151 Q19 160 27 169" fill="none" stroke="#b8752a" stroke-width="9" stroke-linecap="round"/>
+<g class="lion-mane"><circle cx="80" cy="58" r="49" fill="#a85e22"/><circle cx="80" cy="58" r="43" fill="#c97828"/><circle cx="80" cy="61" r="30" fill="#f4bd58"/></g>
+<circle cx="51" cy="31" r="14" fill="#8f5523"/><circle cx="109" cy="31" r="14" fill="#8f5523"/>
+<circle cx="68" cy="56" r="5" fill="#fff"/><circle cx="92" cy="56" r="5" fill="#fff"/><circle cx="68" cy="56" r="2.5" fill="#182a36"/><circle cx="92" cy="56" r="2.5" fill="#182a36"/>
+<ellipse cx="80" cy="69" rx="11" ry="8" fill="#fff0c7"/><circle cx="80" cy="66" r="4" fill="#573522"/>
+<path d="M73 74 Q80 83 87 74" fill="none" stroke="#573522" stroke-width="4" stroke-linecap="round"/>
+<circle cx="68" cy="67" r="2" fill="#f08a72"/><circle cx="92" cy="67" r="2" fill="#f08a72"/>
+<rect x="47" y="96" width="66" height="59" rx="28" fill="#e8a63d" stroke="#b8752a" stroke-width="4"/>
+<ellipse cx="80" cy="120" rx="23" ry="27" fill="#f5bd58" opacity=".65"/>
+<rect x="27" y="102" width="24" height="58" rx="12" fill="#e8a63d" stroke="#b8752a" stroke-width="4"/><rect x="109" y="102" width="24" height="58" rx="12" fill="#e8a63d" stroke="#b8752a" stroke-width="4"/>
+<circle cx="39" cy="155" r="5" fill="#f4bd58"/><circle cx="121" cy="155" r="5" fill="#f4bd58"/>
+<rect x="54" y="145" width="20" height="29" rx="10" fill="#b8752a"/><rect x="86" y="145" width="20" height="29" rx="10" fill="#b8752a"/>
+<path d="M36 151 Q18 158 28 170" fill="none" stroke="#b8752a" stroke-width="9" stroke-linecap="round"/>
+<path d="M130 112 Q145 101 142 91" fill="none" stroke="#b8752a" stroke-width="7" stroke-linecap="round"/>
 </svg></div><div id="animalName">Lion</div><div id="toast"></div>
 </div>
 <footer><button class="footbtn" id="animalBtn">🐾 Animal</button><button class="footbtn" id="skip">⏭️ Skip</button><button class="footbtn" id="homeBtn">🏠 Home</button></footer>
@@ -271,7 +256,7 @@ function slice(d){
  d.classList.add("sliced");
  setTimeout(()=>ok?correct():wrong(),300)
 }
-function correct(){score+=10;$("score").textContent=score;$("animal").classList.remove("bounce");void $("animal").offsetWidth;$("animal").classList.add("bounce");if(window.deluxeConfetti)deluxeConfetti();if(window.deluxeSparks)deluxeSparks();show("🎉","SUPER SLICE!","Correct! +10 points");}
+function correct(){score+=10;$("score").textContent=score;$("animal").classList.remove("bounce");void $("animal").offsetWidth;$("animal").classList.add("bounce");if(window.celebrate)celebrate();if(window.sparkleAround)sparkleAround();show("🎉","SUPER SLICE!","Correct! +10 points");}
 function wrong(){lives--; $("lives").textContent=lives; if(lives<=0)show("💪","GREAT TRY!","Final score: "+score);else show("🙂","ALMOST!","The correct answer is "+current[3]);}
 function miss(){wrong()}
 function show(e,t,p){$("rEmoji").textContent=e;$("rTitle").textContent=t;$("rText").textContent=p;$("result").style.display="flex";playing=false}
@@ -286,37 +271,22 @@ let down=false,lastX=0,lastY=0;
 $("game").addEventListener("pointermove",e=>{if(!down||!playing)return;const r=$("game").getBoundingClientRect();lastX=e.clientX-r.left;lastY=e.clientY-r.top;fallers.forEach(d=>{const x=d.offsetLeft,y=d.offsetTop,w=d.offsetWidth,h=d.offsetHeight;if(lastX>x-42&&lastX<x+w+42&&lastY>y-42&&lastY<y+h+42)slice(d)})});
 $("game").addEventListener("pointerdown",e=>{down=true});window.addEventListener("pointerup",()=>down=false);
 
-// Deluxe launch + celebration effects
+// Deluxe interaction effects
 (function(){
   const launch=document.getElementById('launch');
-  const hideLaunch=()=>{if(!launch||launch.classList.contains('hide'))return;launch.classList.add('hide');setTimeout(()=>launch.remove(),500)};
-  setTimeout(hideLaunch,1700);
-  if(launch) launch.addEventListener('pointerdown',hideLaunch,{once:true});
-
-  window.deluxeConfetti=function(){
+  const hide=()=>{if(!launch||launch.classList.contains('hide'))return;launch.classList.add('hide');setTimeout(()=>launch.remove(),520)};
+  setTimeout(hide,1750); if(launch) launch.addEventListener('pointerdown',hide,{once:true});
+  window.celebrate=function(){
     const icons=['⭐','✨','🍎','🍓','🍊','🍉','🌟','💫'];
-    for(let i=0;i<22;i++){
-      const c=document.createElement('div');c.className='confetti';
-      c.textContent=icons[Math.floor(Math.random()*icons.length)];
-      c.style.left=(25+Math.random()*50)+'vw';c.style.top=(32+Math.random()*15)+'vh';
-      c.style.setProperty('--x',((Math.random()-.5)*70)+'vw');
-      c.style.setProperty('--y',(35+Math.random()*45)+'vh');
-      c.style.animationDelay=(Math.random()*.15)+'s';
-      document.body.appendChild(c);setTimeout(()=>c.remove(),1400);
+    for(let i=0;i<26;i++){
+      const e=document.createElement('span');e.textContent=icons[(Math.random()*icons.length)|0];e.style.cssText='position:fixed;z-index:10000;left:'+(20+Math.random()*60)+'vw;top:'+(25+Math.random()*25)+'vh;font-size:'+(15+Math.random()*14)+'px;pointer-events:none;animation:deluxeFall '+(0.8+Math.random()*.8)+'s ease-out forwards;--x:'+((Math.random()-.5)*80)+'vw;--y:'+(30+Math.random()*55)+'vh;';document.body.appendChild(e);setTimeout(()=>e.remove(),1800)
     }
   };
-  window.deluxeSparks=function(){
-    const icons=['✨','⭐','💫','🍎'];
-    for(let i=0;i<10;i++){
-      const e=document.createElement('div');e.className='deluxe-spark';
-      e.textContent=icons[Math.floor(Math.random()*icons.length)];
-      e.style.left=(15+Math.random()*70)+'vw';e.style.top=(15+Math.random()*55)+'vh';
-      e.style.setProperty('--dx',((Math.random()-.5)*100)+'px');
-      e.style.setProperty('--dy',((Math.random()-.5)*100)+'px');
-      document.body.appendChild(e);setTimeout(()=>e.remove(),1100);
-    }
+  window.sparkleAround=function(){
+    const g=document.getElementById('game'); if(!g)return;
+    for(let i=0;i<9;i++){const e=document.createElement('span');e.textContent=i%2?'✨':'⭐';e.style.cssText='position:absolute;z-index:25;left:'+(35+Math.random()*30)+'%;top:'+(25+Math.random()*35)+'%;font-size:'+(14+Math.random()*12)+'px;pointer-events:none;animation:deluxeSpark .65s ease-out forwards;--dx:'+((Math.random()-.5)*120)+'px;--dy:'+((Math.random()-.5)*90)+'px;';g.appendChild(e);setTimeout(()=>e.remove(),750)}
   };
+  const st=document.createElement('style');st.textContent='@keyframes deluxeFall{to{opacity:0;transform:translate(var(--x),var(--y)) rotate(540deg) scale(.5)}}@keyframes deluxeSpark{to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.2) rotate(90deg)}}';document.head.appendChild(st);
 })();
-
 </script>
 </body></html>

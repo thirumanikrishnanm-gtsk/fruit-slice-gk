@@ -1,20 +1,12 @@
-Fruit Slice GK — Kids Deluxe PWA
+Fruit Slice GK — Kids Deluxe v4
 
-Replace these 5 files in the GitHub Pages repository:
+Replace these five files in GitHub Pages:
 index.html
 manifest.json
 sw.js
 icon-192.png
 icon-512.png
 
-Pages settings remain:
-main -> / (root)
+Keep Pages: main -> / (root).
 
-This version adds:
-- colorful animated launch screen
-- polished app icon
-- floating sky decorations
-- animated logo/animal/fruits
-- celebration confetti and sparkles
-- updated cache version
-- mobile-friendly styling
+Includes a colorful animated launch screen, upgraded lion mascot, animated home/animal/result screens, floating decorations, fruit shine, celebration confetti/sparkles, and a refreshed app icon.
