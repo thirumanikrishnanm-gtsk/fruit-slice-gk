@@ -161,10 +161,36 @@ footer{background:linear-gradient(180deg,#eaffff00,#d8fbffcc);padding-top:6px}
 #launch .launch-icon{background:#67ddff}
 #launch .launch-card:before{content:"✦  ⭐  ✧  🍎  ✨  🍓  ✦";display:block;font-size:18px;letter-spacing:8px;margin-bottom:5px;animation:twinkle 1.7s ease-in-out infinite}
 
+
+/* KID-FOCUSED MASCOT + MOTION PASS */
+#home .hero .char,#launchMascot .char{animation:mascotFloat 2.3s ease-in-out infinite;transform-origin:50% 90%}
+#home .hero .char{filter:drop-shadow(0 10px 4px rgba(0,0,0,.18))}
+#launchMascot{width:170px;height:190px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+#launchMascot .char{width:170px;height:190px;filter:drop-shadow(0 12px 7px rgba(0,0,0,.22))}
+.launch-fruits{font-size:24px;letter-spacing:8px;animation:fruitBanner 2.2s ease-in-out infinite}
+#animals .animal{position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease;animation:cardFloat 3.2s ease-in-out infinite}
+#animals .animal:nth-child(2n){animation-delay:-.8s}#animals .animal:nth-child(3n){animation-delay:-1.6s}#animals .animal:nth-child(4n){animation-delay:-2.3s}
+#animals .animal:before{content:'✦';position:absolute;right:7px;top:5px;color:#ffd84a;font-size:17px;animation:twinkle 1.2s ease-in-out infinite}
+#animals .animal:active{transform:scale(.93) rotate(-2deg);box-shadow:0 1px 0 #9bd8e7}
+#animals .charMini .char{transition:transform .25s ease;filter:drop-shadow(0 5px 2px rgba(0,0,0,.16))}
+#animals .animal:hover .charMini .char{transform:translateY(-5px) rotate(-3deg) scale(1.06)}
+.mascotBadge .badgeFace{display:inline-block;animation:tinyBounce 1.5s ease-in-out infinite}
+#game #animal .char{filter:drop-shadow(0 9px 4px rgba(0,0,0,.22))}
+#game #animal{animation:gameMascotIdle 2.4s ease-in-out infinite}
+#game #animal.bounce{animation:gameMascotHappy .62s cubic-bezier(.2,1.4,.3,1)!important}
+#knife{animation:knifeIdle 2.8s ease-in-out infinite}
+#knife.swing{animation:knifeSwing .25s ease-out!important}
+@keyframes mascotFloat{0%,100%{transform:translateY(0) rotate(0)}35%{transform:translateY(-8px) rotate(-3deg)}70%{transform:translateY(-3px) rotate(3deg)}}
+@keyframes gameMascotIdle{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-5px)}}
+@keyframes gameMascotHappy{0%{transform:translateX(-50%) translateY(0) scale(1)}35%{transform:translateX(-50%) translateY(-20px) scale(1.08) rotate(-4deg)}70%{transform:translateX(-50%) translateY(2px) scale(.98) rotate(3deg)}100%{transform:translateX(-50%) translateY(0) scale(1)}}
+@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes tinyBounce{50%{transform:translateY(-3px) rotate(-5deg) scale(1.08)}}
+@keyframes fruitBanner{50%{transform:translateY(-5px) scale(1.04)}}
+@keyframes knifeIdle{50%{transform:rotate(-28deg) translateY(-2px)}}
 </style>
 </head>
 <body>
-<div id="launch"><div class="launch-card"><img class="launch-icon" src="./icon-512.png" alt="Fruit Slice GK"><h1>Fruit Slice GK</h1><div class="tag">LEARN • PLAY • GROW 🌟</div><div class="loading"><i></i></div><div class="ready">🍎 Get ready to slice & learn! 🦁</div></div></div>
+<div id="launch"><div class="launch-card"><div id="launchMascot" class="launch-mascot" aria-hidden="true"></div><div class="launch-fruits">🍎 ✨ 🍓 ✨ 🍉</div><h1>Fruit Slice GK</h1><div class="tag">LEARN • PLAY • GROW 🌟</div><div class="loading"><i></i></div><div class="ready">Get ready to slice & learn!</div></div></div>
 <div id="app">
 <header><div class="pill">⭐ <span id="score">0</span></div><div class="logo">🍎 Fruit Slice GK</div><div class="pill">❤️ <span id="lives">3</span></div></header>
 <div class="progress"><i id="bar"></i></div>
@@ -190,7 +216,7 @@ footer{background:linear-gradient(180deg,#eaffff00,#d8fbffcc);padding-top:6px}
 <footer><button class="footbtn" id="animalBtn">🐾 Animal</button><button class="footbtn" id="skip">⏭️ Skip</button><button class="footbtn" id="homeBtn">🏠 Home</button></footer>
 </div>
 
-<div id="home"><div class="panel"><div class="hero" id="homeHero"></div><h1>Fruit Slice GK!</h1><p>Pick your animal, then slice the right answer before it falls!</p><div class="mascotBadge">🦁 Your mascot cheers for you!</div><button class="mainbtn" id="play">▶️ PLAY</button><button class="altbtn" id="pickHome">🐾 Choose My Animal</button><p style="font-size:12px">1000 kid-friendly GK questions • Ages 6–10</p></div></div>
+<div id="home"><div class="panel"><div class="hero" id="homeHero"></div><h1>Fruit Slice GK!</h1><p>Pick your animal, then slice the right answer before it falls!</p><div class="mascotBadge"><span class="badgeFace">🦁</span> Your mascot cheers for you! <span>✨</span></div><button class="mainbtn" id="play">▶️ PLAY</button><button class="altbtn" id="pickHome">🐾 Choose My Animal</button><p style="font-size:12px">1000 kid-friendly GK questions • Ages 6–10</p></div></div>
 
 <div id="animals"><div class="panel"><h1>🐾 Pick Your Animal</h1><p>Your animal will cheer for you!</p><div class="animalGrid">
 <button class="animal" data-e="lion" data-n="Lion"><span class="mini charMini"></span><small>Lion</small></button>
@@ -214,25 +240,51 @@ const QUESTIONS=[["Animals", "Which animal says “meow”? ", ["Cat", "Dog", "C
 let score=0,lives=3,used=[],current=null,round=0,fallers=[],timer=null,playing=false,animal=["lion","Lion"],spawnToken=0;
 const $=id=>document.getElementById(id);
 function characterSVG(type){
- const data={
- lion:['#e8a63d','#c9862e','🦁'], tiger:['#f3a43b','#e66b27','🐯'], panda:['#f5f5f5','#202a30','🐼'],
- elephant:['#aeb9c2','#7f8b95','🐘'], bunny:['#f4d6df','#e89fb4','🐰'], monkey:['#9b673e','#704326','🐵'],
- fox:['#e98b3f','#c95e2e','🦊'], koala:['#aeb3b8','#858b91','🐨'], frog:['#76c96a','#429c4e','🐸'],
- puppy:['#d8a56d','#9d6a3d','🐶'], kitten:['#d8a0a8','#b66f7c','🐱'], unicorn:['#e9c7f2','#b78be0','🦄']
+ const d={
+  lion:{c:'#f2ae3f',o:'#b86f26',m:'#8b4f20',kind:'lion'},
+  tiger:{c:'#f5a13a',o:'#d96525',m:'#1e2630',kind:'tiger'},
+  panda:{c:'#f7f7f5',o:'#222b33',m:'#222b33',kind:'panda'},
+  elephant:{c:'#aeb8c0',o:'#7e8993',m:'#68737c',kind:'elephant'},
+  bunny:{c:'#f3d4df',o:'#dd91ae',m:'#8d6270',kind:'bunny'},
+  monkey:{c:'#a66b3f',o:'#704326',m:'#5a3524',kind:'monkey'},
+  fox:{c:'#ed8a3c',o:'#bd512b',m:'#fff4df',kind:'fox'},
+  koala:{c:'#aeb5bc',o:'#7e878f',m:'#4d5962',kind:'koala'},
+  frog:{c:'#72c96b',o:'#3b974d',m:'#2e7140',kind:'frog'},
+  puppy:{c:'#d7a36f',o:'#925e38',m:'#fff1d7',kind:'puppy'},
+  kitten:{c:'#e0a2ac',o:'#b86c79',m:'#fff0f2',kind:'kitten'},
+  unicorn:{c:'#e7c3f4',o:'#a974d2',m:'#7c4aa8',kind:'unicorn'}
  };
- const d=data[type]||data.lion;
- return `<svg class="char" viewBox="0 0 160 180" aria-label="${type}" role="img">
- <circle cx="80" cy="53" r="38" fill="${d[0]}" stroke="${d[1]}" stroke-width="5"/>
- <circle cx="51" cy="28" r="13" fill="${d[1]}"/><circle cx="109" cy="28" r="13" fill="${d[1]}"/>
- <circle cx="68" cy="53" r="4" fill="#182a36"/><circle cx="92" cy="53" r="4" fill="#182a36"/>
- <path d="M70 69 Q80 77 90 69" fill="none" stroke="#513b38" stroke-width="4" stroke-linecap="round"/>
- <rect x="48" y="88" width="64" height="67" rx="28" fill="${d[0]}" stroke="${d[1]}" stroke-width="4"/>
- <rect x="27" y="100" width="24" height="58" rx="12" fill="${d[0]}" stroke="${d[1]}" stroke-width="4"/>
- <rect x="109" y="100" width="24" height="58" rx="12" fill="${d[0]}" stroke="${d[1]}" stroke-width="4"/>
- <rect x="54" y="146" width="20" height="28" rx="10" fill="${d[1]}"/><rect x="86" y="146" width="20" height="28" rx="10" fill="${d[1]}"/>
- </svg>`;
+ const a=d[type]||d.lion;
+ let ears=''; let face=''; let body='';
+ if(a.kind==='lion') ears=`<circle cx="51" cy="31" r="15" fill="${a.m}"/><circle cx="109" cy="31" r="15" fill="${a.m}"/><circle cx="80" cy="60" r="46" fill="${a.m}"/><circle cx="80" cy="62" r="34" fill="${a.c}"/>`;
+ else if(a.kind==='tiger') ears=`<circle cx="51" cy="31" r="14" fill="${a.o}"/><circle cx="109" cy="31" r="14" fill="${a.o}"/>`;
+ else if(a.kind==='panda') ears=`<circle cx="51" cy="31" r="15" fill="${a.o}"/><circle cx="109" cy="31" r="15" fill="${a.o}"/>`;
+ else if(a.kind==='elephant') ears=`<ellipse cx="39" cy="58" rx="27" ry="36" fill="${a.c}" stroke="${a.o}" stroke-width="5"/><ellipse cx="121" cy="58" rx="27" ry="36" fill="${a.c}" stroke="${a.o}" stroke-width="5"/>`;
+ else if(a.kind==='bunny') ears=`<rect x="42" y="3" width="23" height="52" rx="12" fill="${a.c}" stroke="${a.o}" stroke-width="5" transform="rotate(-7 53 30)"/><rect x="95" y="3" width="23" height="52" rx="12" fill="${a.c}" stroke="${a.o}" stroke-width="5" transform="rotate(7 106 30)"/><rect x="49" y="9" width="9" height="38" rx="5" fill="${a.o}" transform="rotate(-7 53 30)"/><rect x="102" y="9" width="9" height="38" rx="5" fill="${a.o}" transform="rotate(7 106 30)"/>`;
+ else if(a.kind==='monkey') ears=`<circle cx="42" cy="51" r="20" fill="${a.c}" stroke="${a.o}" stroke-width="5"/><circle cx="118" cy="51" r="20" fill="${a.c}" stroke="${a.o}" stroke-width="5"/>`;
+ else if(a.kind==='fox') ears=`<path d="M42 43 L44 10 L70 35Z" fill="${a.c}" stroke="${a.o}" stroke-width="5"/><path d="M118 43 L116 10 L90 35Z" fill="${a.c}" stroke="${a.o}" stroke-width="5"/><path d="M47 28 L48 18 L57 32Z" fill="#ffd0b5"/><path d="M113 28 L112 18 L103 32Z" fill="#ffd0b5"/>`;
+ else if(a.kind==='koala') ears=`<circle cx="45" cy="39" r="22" fill="${a.c}" stroke="${a.o}" stroke-width="5"/><circle cx="115" cy="39" r="22" fill="${a.c}" stroke="${a.o}" stroke-width="5"/><circle cx="45" cy="39" r="12" fill="#cbd1d6"/><circle cx="115" cy="39" r="12" fill="#cbd1d6"/>`;
+ else if(a.kind==='frog') ears=`<circle cx="56" cy="31" r="16" fill="${a.c}" stroke="${a.o}" stroke-width="5"/><circle cx="104" cy="31" r="16" fill="${a.c}" stroke="${a.o}" stroke-width="5"/>`;
+ else if(a.kind==='puppy') ears=`<ellipse cx="44" cy="55" rx="20" ry="31" fill="${a.o}" stroke="#75482e" stroke-width="5" transform="rotate(18 44 55)"/><ellipse cx="116" cy="55" rx="20" ry="31" fill="${a.o}" stroke="#75482e" stroke-width="5" transform="rotate(-18 116 55)"/>`;
+ else if(a.kind==='kitten') ears=`<path d="M42 43 L45 10 L69 34Z" fill="${a.c}" stroke="${a.o}" stroke-width="5"/><path d="M118 43 L115 10 L91 34Z" fill="${a.c}" stroke="${a.o}" stroke-width="5"/>`;
+ else if(a.kind==='unicorn') ears=`<path d="M42 42 L47 12 L70 34Z" fill="${a.c}" stroke="${a.o}" stroke-width="5"/><path d="M118 42 L113 12 L90 34Z" fill="${a.c}" stroke="${a.o}" stroke-width="5"/><path d="M72 20 L80 -2 L88 20Z" fill="#ffd75c" stroke="#d49b27" stroke-width="3"/>`;
+ body=`<rect x="47" y="91" width="66" height="66" rx="29" fill="${a.c}" stroke="${a.o}" stroke-width="5"/><rect x="25" y="101" width="25" height="59" rx="13" fill="${a.c}" stroke="${a.o}" stroke-width="5"/><rect x="110" y="101" width="25" height="59" rx="13" fill="${a.c}" stroke="${a.o}" stroke-width="5"/><rect x="53" y="146" width="21" height="29" rx="10" fill="${a.o}"/><rect x="86" y="146" width="21" height="29" rx="10" fill="${a.o}"/>`;
+ let head=`<circle cx="80" cy="58" r="39" fill="${a.c}" stroke="${a.o}" stroke-width="5"/>`;
+ if(a.kind==='panda') face=`<ellipse cx="64" cy="55" rx="10" ry="16" fill="#222" transform="rotate(28 64 55)"/><ellipse cx="96" cy="55" rx="10" ry="16" fill="#222" transform="rotate(-28 96 55)"/><circle cx="68" cy="56" r="4" fill="white"/><circle cx="92" cy="56" r="4" fill="white"/><ellipse cx="80" cy="68" rx="11" ry="8" fill="#222"/>`;
+ else if(a.kind==='elephant') face=`<circle cx="68" cy="55" r="5" fill="#24313a"/><circle cx="92" cy="55" r="5" fill="#24313a"/><path d="M78 64 Q80 78 80 92 Q80 103 91 101" fill="none" stroke="${a.m}" stroke-width="11" stroke-linecap="round"/><circle cx="88" cy="99" r="3" fill="${a.m}"/>`;
+ else if(a.kind==='frog') face=`<circle cx="61" cy="48" r="7" fill="#fff"/><circle cx="99" cy="48" r="7" fill="#fff"/><circle cx="61" cy="48" r="3" fill="#17262d"/><circle cx="99" cy="48" r="3" fill="#17262d"/><path d="M53 70 Q80 88 107 70" fill="none" stroke="${a.m}" stroke-width="6" stroke-linecap="round"/>`;
+ else if(a.kind==='unicorn') face=`<circle cx="68" cy="56" r="5" fill="#26313a"/><circle cx="92" cy="56" r="5" fill="#26313a"/><ellipse cx="80" cy="69" rx="10" ry="7" fill="#fff"/><circle cx="80" cy="68" r="3" fill="${a.m}"/><path d="M73 76 Q80 83 87 76" fill="none" stroke="${a.m}" stroke-width="4" stroke-linecap="round"/><path d="M111 35 Q128 44 121 61" fill="none" stroke="#d35bb9" stroke-width="8" stroke-linecap="round"/>`;
+ else face=`<circle cx="68" cy="56" r="5" fill="#26313a"/><circle cx="92" cy="56" r="5" fill="#26313a"/><path d="M70 72 Q80 81 90 72" fill="none" stroke="${a.m}" stroke-width="5" stroke-linecap="round"/>`;
+ if(a.kind==='tiger') face+=`<path d="M57 42 l10 7 M103 42 l-10 7 M54 63 l12 2 M106 63 l-12 2" stroke="${a.m}" stroke-width="4" stroke-linecap="round"/>`;
+ if(a.kind==='fox') face+=`<path d="M60 67 Q80 88 100 67 L80 96Z" fill="${a.m}" stroke="${a.o}" stroke-width="3"/><circle cx="80" cy="77" r="4" fill="#4b3025"/>`;
+ if(a.kind==='kitten') face+=`<path d="M51 67 l16 2 M109 67 l-16 2 M52 73 l15 0 M108 73 l-15 0" stroke="${a.m}" stroke-width="2"/>`;
+ if(a.kind==='puppy') face+=`<ellipse cx="80" cy="70" rx="14" ry="10" fill="${a.m}"/><circle cx="80" cy="68" r="4" fill="#3b2a25"/>`;
+ if(a.kind==='monkey') face+=`<ellipse cx="80" cy="68" rx="20" ry="15" fill="#c88a58"/><circle cx="80" cy="67" r="4" fill="#4d3024"/>`;
+ return `<svg class="char" viewBox="0 0 160 180" aria-label="${type}" role="img">${ears}${head}${face}${body}</svg>`;
 }
 function hydrateMascots(){
+  const launch=document.getElementById('launchMascot');
+  if(launch) launch.innerHTML=characterSVG('lion');
   const home=document.getElementById('homeHero');
   if(home) home.innerHTML=characterSVG('lion');
   document.querySelectorAll('.animal').forEach(b=>{
