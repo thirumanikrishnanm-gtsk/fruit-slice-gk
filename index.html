@@ -149,6 +149,18 @@ footer{background:linear-gradient(180deg,#eaffff00,#d8fbffcc);padding-top:6px}
 @media(max-width:380px){.animalGrid{gap:7px}.animal{padding:7px 2px}.mini{font-size:36px}#home .hero{font-size:64px}#question b{font-size:17px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
 
+
+/* COHESIVE MASCOT SYSTEM */
+#home .hero{height:142px;width:128px;margin:0 auto 4px;font-size:0;position:relative;filter:drop-shadow(0 10px 5px #0002)}
+#home .hero .char{width:128px;height:144px;display:block}
+.charMini{display:block;width:68px;height:72px;margin:0 auto 2px;font-size:0;filter:drop-shadow(0 4px 2px #0002)}
+.charMini .char{width:68px;height:76px;display:block}
+.animal{min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+.animal small{font-size:11px;color:#174f70}
+#home .mascotBadge{display:inline-flex;align-items:center;gap:6px;background:#e9fbff;border:2px solid #fff;border-radius:99px;padding:5px 12px;font-size:12px;font-weight:900;color:#17648a;box-shadow:0 3px 8px #0001}
+#launch .launch-icon{background:#67ddff}
+#launch .launch-card:before{content:"✦  ⭐  ✧  🍎  ✨  🍓  ✦";display:block;font-size:18px;letter-spacing:8px;margin-bottom:5px;animation:twinkle 1.7s ease-in-out infinite}
+
 </style>
 </head>
 <body>
@@ -178,21 +190,21 @@ footer{background:linear-gradient(180deg,#eaffff00,#d8fbffcc);padding-top:6px}
 <footer><button class="footbtn" id="animalBtn">🐾 Animal</button><button class="footbtn" id="skip">⏭️ Skip</button><button class="footbtn" id="homeBtn">🏠 Home</button></footer>
 </div>
 
-<div id="home"><div class="panel"><div class="hero">🦁🍎🧠</div><h1>Fruit Slice GK!</h1><p>Pick your animal, then slice the right answer before it falls!</p><button class="mainbtn" id="play">▶️ PLAY</button><button class="altbtn" id="pickHome">🐾 Choose My Animal</button><p style="font-size:12px">1000 kid-friendly GK questions • Ages 6–10</p></div></div>
+<div id="home"><div class="panel"><div class="hero" id="homeHero"></div><h1>Fruit Slice GK!</h1><p>Pick your animal, then slice the right answer before it falls!</p><div class="mascotBadge">🦁 Your mascot cheers for you!</div><button class="mainbtn" id="play">▶️ PLAY</button><button class="altbtn" id="pickHome">🐾 Choose My Animal</button><p style="font-size:12px">1000 kid-friendly GK questions • Ages 6–10</p></div></div>
 
 <div id="animals"><div class="panel"><h1>🐾 Pick Your Animal</h1><p>Your animal will cheer for you!</p><div class="animalGrid">
-<button class="animal" data-e="lion" data-n="Lion"><span class="mini lion">🦁</span><small>Lion</small></button>
-<button class="animal" data-e="tiger" data-n="Tiger"><span class="mini">🐯</span><small>Tiger</small></button>
-<button class="animal" data-e="panda" data-n="Panda"><span class="mini">🐼</span><small>Panda</small></button>
-<button class="animal" data-e="elephant" data-n="Elephant"><span class="mini">🐘</span><small>Elephant</small></button>
-<button class="animal" data-e="bunny" data-n="Bunny"><span class="mini">🐰</span><small>Bunny</small></button>
-<button class="animal" data-e="monkey" data-n="Monkey"><span class="mini">🐵</span><small>Monkey</small></button>
-<button class="animal" data-e="fox" data-n="Fox"><span class="mini">🦊</span><small>Fox</small></button>
-<button class="animal" data-e="koala" data-n="Koala"><span class="mini">🐨</span><small>Koala</small></button>
-<button class="animal" data-e="frog" data-n="Frog"><span class="mini">🐸</span><small>Frog</small></button>
-<button class="animal" data-e="puppy" data-n="Puppy"><span class="mini">🐶</span><small>Puppy</small></button>
-<button class="animal" data-e="kitten" data-n="Kitten"><span class="mini">🐱</span><small>Kitten</small></button>
-<button class="animal" data-e="unicorn" data-n="Unicorn"><span class="mini">🦄</span><small>Unicorn</small></button>
+<button class="animal" data-e="lion" data-n="Lion"><span class="mini charMini"></span><small>Lion</small></button>
+<button class="animal" data-e="tiger" data-n="Tiger"><span class="mini charMini"></span><small>Tiger</small></button>
+<button class="animal" data-e="panda" data-n="Panda"><span class="mini charMini"></span><small>Panda</small></button>
+<button class="animal" data-e="elephant" data-n="Elephant"><span class="mini charMini"></span><small>Elephant</small></button>
+<button class="animal" data-e="bunny" data-n="Bunny"><span class="mini charMini"></span><small>Bunny</small></button>
+<button class="animal" data-e="monkey" data-n="Monkey"><span class="mini charMini"></span><small>Monkey</small></button>
+<button class="animal" data-e="fox" data-n="Fox"><span class="mini charMini"></span><small>Fox</small></button>
+<button class="animal" data-e="koala" data-n="Koala"><span class="mini charMini"></span><small>Koala</small></button>
+<button class="animal" data-e="frog" data-n="Frog"><span class="mini charMini"></span><small>Frog</small></button>
+<button class="animal" data-e="puppy" data-n="Puppy"><span class="mini charMini"></span><small>Puppy</small></button>
+<button class="animal" data-e="kitten" data-n="Kitten"><span class="mini charMini"></span><small>Kitten</small></button>
+<button class="animal" data-e="unicorn" data-n="Unicorn"><span class="mini charMini"></span><small>Unicorn</small></button>
 </div><button class="altbtn" id="closeAnimals">Done</button></div></div>
 
 <div id="result"><div class="resultcard"><div class="hero" id="rEmoji">🎉</div><h2 id="rTitle">Awesome!</h2><p id="rText"></p><button class="mainbtn" id="next">Next Question 🍎</button></div></div>
@@ -220,7 +232,16 @@ function characterSVG(type){
  <rect x="54" y="146" width="20" height="28" rx="10" fill="${d[1]}"/><rect x="86" y="146" width="20" height="28" rx="10" fill="${d[1]}"/>
  </svg>`;
 }
+function hydrateMascots(){
+  const home=document.getElementById('homeHero');
+  if(home) home.innerHTML=characterSVG('lion');
+  document.querySelectorAll('.animal').forEach(b=>{
+    const holder=b.querySelector('.charMini');
+    if(holder) holder.innerHTML=characterSVG(b.dataset.e);
+  });
+}
 function setAnimal(type,name){animal=[type,name];$("animal").innerHTML=characterSVG(type);$("animalName").textContent=name;}
+hydrateMascots();
 function chooseQ(){let pool=QUESTIONS.map((_,i)=>i).filter(i=>!used.includes(i));if(!pool.length){used=[];pool=QUESTIONS.map((_,i)=>i)}let i=pool[Math.floor(Math.random()*pool.length)];used.push(i);if(used.length>120)used.shift();current=QUESTIONS[i];round++;$("q").textContent=current[1];$("bar").style.width=((round%10)*10)+"%";spawn();}
 function spawn(){
  clearInterval(timer); const myToken=++spawnToken;fallers.forEach(x=>x.remove());fallers=[];
@@ -288,5 +309,10 @@ $("game").addEventListener("pointerdown",e=>{down=true});window.addEventListener
   };
   const st=document.createElement('style');st.textContent='@keyframes deluxeFall{to{opacity:0;transform:translate(var(--x),var(--y)) rotate(540deg) scale(.5)}}@keyframes deluxeSpark{to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.2) rotate(90deg)}}';document.head.appendChild(st);
 })();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function(){ navigator.serviceWorker.register('./sw.js', {scope:'./'}).catch(function(){}); });
+}
 </script>
 </body></html>
