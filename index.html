@@ -6,6 +6,8 @@
 <meta name="theme-color" content="#6edcff">
 <title>Fruit Slice GK Kids</title>
 <style>
+html,body{overflow-x:hidden;}
+
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
 body{background:#9cecff;touch-action:none;color:#18324a;-webkit-user-select:none;user-select:none}
@@ -47,7 +49,7 @@ background:linear-gradient(#72dfff 0 57%,#8de278 57% 100%);box-shadow:inset 0 0 
 #knife.swing{animation:knifeSwing .25s ease-out}
 @keyframes knifeSwing{0%{transform:rotate(-38deg)}45%{transform:rotate(-125deg) translate(-12px,-20px) scale(1.1)}100%{transform:rotate(-38deg)}}
 #animalName{position:absolute;bottom:1%;left:50%;transform:translateX(-50%);background:#fff;padding:3px 9px;border-radius:10px;font-size:11px;font-weight:900;z-index:4}
-.fruit{position:absolute;top:-90px;width:min(138px,29vw);min-width:104px;height:82px;border:4px solid #fff;border-radius:24px;display:flex;align-items:center;justify-content:center;text-align:center;padding:7px;font-size:17px;font-weight:1000;line-height:1.05;box-shadow:0 7px 13px #0003;z-index:5;user-select:none;touch-action:none}
+.fruit{box-sizing:border-box;position:absolute;top:-90px;width:min(138px,29vw);min-width:104px;height:82px;border:4px solid #fff;border-radius:24px;display:flex;align-items:center;justify-content:center;text-align:center;padding:7px;font-size:17px;font-weight:1000;line-height:1.05;box-shadow:0 7px 13px #0003;z-index:5;user-select:none;touch-action:none}
 .fruit:after{content:"🍃";position:absolute;right:8px;top:-18px;font-size:18px}.fruit.sliced{animation:fruitSlice .34s ease-out forwards}
 @keyframes fruitSlice{
   0%{opacity:1;transform:scale(1) rotate(0)}
@@ -62,7 +64,7 @@ footer{padding:5px 9px max(7px,env(safe-area-inset-bottom));display:flex;gap:7px
 #result{display:none;background:#18324acc}.resultcard{background:white;border-radius:30px;padding:24px;text-align:center;width:min(360px,100%)}.resultcard .hero{font-size:65px}.resultcard h2{margin:4px 0}.resultcard p{color:#60798a}
 .progress{height:7px;background:#ffffff88;margin:0 12px 5px;border-radius:10px;overflow:hidden}.progress i{display:block;height:100%;background:#ff9d3c;width:0%;transition:.2s}
 </style>
-<meta name="theme-color" content="#6C63FF"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><link rel="manifest" href="manifest.json"></head>
+</head>
 <body>
 <div id="app">
 <header><div class="pill">⭐ <span id="score">0</span></div><div class="logo">🍎 Fruit Slice GK</div><div class="pill">❤️ <span id="lives">3</span></div></header>
@@ -177,4 +179,4 @@ let down=false,lastX=0,lastY=0;
 $("game").addEventListener("pointermove",e=>{if(!down||!playing)return;const r=$("game").getBoundingClientRect();lastX=e.clientX-r.left;lastY=e.clientY-r.top;fallers.forEach(d=>{const x=d.offsetLeft,y=d.offsetTop,w=d.offsetWidth,h=d.offsetHeight;if(lastX>x-42&&lastX<x+w+42&&lastY>y-42&&lastY<y+h+42)slice(d)})});
 $("game").addEventListener("pointerdown",e=>{down=true});window.addEventListener("pointerup",()=>down=false);
 </script>
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}</script></body></html>
+</body></html>
