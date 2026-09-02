@@ -1,46 +1,334 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#16b9f5"><link rel="manifest" href="./manifest.json"><title>Fruit Slice GK</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#5b2ca0">
+<meta name="description" content="Fruit Slice GK - a fun GK game for kids">
+<link rel="manifest" href="manifest.json">
+<title>Fruit Slice GK</title>
 <style>
-:root{--sky:#54d7f5;--sky2:#9beeff;--grass:#7ee35f;--blue:#075b91;--orange:#ff9d18;--pink:#ff477e;--card:#fff;--shadow:0 8px 0 rgba(0,86,130,.18)}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,sans-serif;overflow-x:hidden;background:linear-gradient(#5bdaf7,#d9fff0)}body{touch-action:manipulation}button{font:inherit;border:0;cursor:pointer}
-#app{width:100%;min-height:100vh;min-height:100svh;position:relative}.screen{display:none;min-height:100vh;min-height:100svh;position:relative;overflow:hidden}.screen.active{display:flex}
-.sparkles{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,#fff 0 3px,transparent 4px);background-size:75px 75px;opacity:.35;animation:drift 8s linear infinite}@keyframes drift{to{background-position:75px 75px}}
-.panel{width:min(92%,650px);margin:auto;background:rgba(255,255,255,.94);border-radius:34px;box-shadow:0 12px 0 rgba(0,103,137,.18),0 25px 50px rgba(0,70,100,.15);padding:24px;text-align:center;position:relative;z-index:2}
-.logo{font-size:clamp(36px,9vw,64px);font-weight:1000;line-height:.9;color:#075b91;text-shadow:0 5px #fff}.logo span{display:block;color:#ff5b16}.tag{color:#637d8b;font-weight:800;font-size:18px;margin:16px 0}.heroLion{width:min(72%,330px);aspect-ratio:1/1;object-fit:cover;object-position:center;border-radius:32px;margin:4px auto 12px;display:block;box-shadow:0 10px 20px rgba(0,60,80,.2)}
-.btn{width:100%;min-height:58px;border-radius:32px;margin:8px 0;font-size:22px;font-weight:1000;color:#fff;box-shadow:0 7px 0 rgba(0,80,110,.22)}.play{background:linear-gradient(#ffb52f,#ff7d08)}.choose{background:linear-gradient(#8f52ff,#6a24e9)}.secondary{background:#e8faff;color:#075b91;box-shadow:0 6px 0 #a8dce8}.homeActions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.smallBtn{min-height:52px;border-radius:25px;background:#f3fbff;color:#075b91;font-weight:900;box-shadow:0 5px 0 #b6e1ea}
-/* animals */.animalPanel{padding:22px 18px}.animalTitle{font-size:clamp(30px,7vw,48px);font-weight:1000;color:#075b91;margin:2px}.animalSub{font-weight:800;color:#637d8b;margin:6px 0 18px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.animal{min-width:0;aspect-ratio:1/1.18;border-radius:22px;background:linear-gradient(#fff,#e9fbff);box-shadow:0 6px 0 #b7e5ed;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#153b58;font-weight:1000}.animal .emoji{font-size:clamp(38px,11vw,64px);line-height:1;filter:drop-shadow(0 3px 2px rgba(0,0,0,.12))}.animal.selected{outline:5px solid #ffd21a;transform:scale(1.04)}
-/* game */#game{background:linear-gradient(#50d8f5 0 58%,#83e565 58%)}.gameHeader{position:absolute;left:4%;right:4%;top:10px;z-index:20;display:flex;justify-content:space-between;align-items:center}.pill{background:#fff;border-radius:25px;padding:8px 14px;font-size:19px;font-weight:1000;color:#153b58;box-shadow:var(--shadow)}.gameTitle{font-weight:1000;color:#075b91;font-size:22px;text-shadow:0 2px #fff}.pause{width:44px;height:44px;border-radius:50%;background:#fff;color:#075b91;font-weight:1000;box-shadow:var(--shadow)}.questionCard{position:absolute;z-index:15;left:5%;right:5%;top:72px;background:#fff;border-radius:26px;padding:16px 14px;text-align:center;color:#153b58;font-size:clamp(18px,5vw,25px);font-weight:1000;box-shadow:var(--shadow)}.instruction{font-size:14px;color:#6d8793;margin-top:5px}.playfield{position:absolute;left:3%;right:3%;top:190px;bottom:0;border:5px solid rgba(255,255,255,.65);border-radius:34px 34px 24px 24px;overflow:hidden}.cloud{position:absolute;width:90px;height:34px;background:rgba(255,255,255,.55);border-radius:30px}.cloud:before,.cloud:after{content:"";position:absolute;background:inherit;border-radius:50%}.cloud:before{width:45px;height:45px;left:15px;bottom:0}.cloud:after{width:55px;height:55px;left:40px;bottom:-2px}.c1{top:45px;left:8%}.c2{top:150px;right:8%}.ground{position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(#8be96d,#69d957)}.flowers{position:absolute;bottom:5px;left:4%;font-size:25px;letter-spacing:14px;opacity:.8}.mascot{position:absolute;z-index:9;bottom:0;left:50%;transform:translateX(-50%);width:min(45%,300px);border-radius:25px;overflow:hidden;filter:drop-shadow(0 10px 8px rgba(0,0,0,.25));animation:bob 2.4s ease-in-out infinite}.mascot img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center}.knife{position:absolute;z-index:25;bottom:19%;left:62%;width:82px;height:27px;background:linear-gradient(#fff,#cbd5dd);clip-path:polygon(0 22%,100% 0,80% 100%,0 78%);transform-origin:8% 50%;filter:drop-shadow(0 3px 2px #555)}.knife:before{content:"";position:absolute;left:-18px;top:2px;width:25px;height:23px;border-radius:5px;background:#6d4228}@keyframes bob{50%{transform:translateX(-50%) translateY(-6px)}}
-.fruit{position:absolute;z-index:30;width:clamp(100px,27vw,145px);height:clamp(82px,20vw,112px);border:4px solid #fff;border-radius:30px;display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;color:#173b55;font-weight:1000;font-size:clamp(16px,4.3vw,21px);box-shadow:0 9px 0 rgba(0,70,100,.18),inset 0 -7px rgba(0,0,0,.08);touch-action:none;user-select:none}.fruit span{position:relative;z-index:2}.lane0{left:2%}.lane1{left:36%}.lane2{right:2%}.f0{background:#ffd447}.f1{background:#ff6e78}.f2{background:#75dd72}.fruit.falling{animation:fall var(--dur) linear forwards}@keyframes fall{from{transform:translateY(-140px) rotate(-4deg)}to{transform:translateY(calc(100% + 180px)) rotate(8deg)}}
-.slice{position:absolute;z-index:50;font-size:45px;pointer-events:none;animation:pop .65s ease-out forwards}@keyframes pop{to{transform:translateY(-70px) scale(1.7) rotate(25deg);opacity:0}}
-/* result */.resultCard h1{font-size:44px;color:#ff477e;margin:5px;text-shadow:0 4px #fff}.resultMascot{width:min(55%,280px);margin:auto;border-radius:30px;overflow:hidden}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#eefaff;border-radius:20px;padding:12px;margin:15px 0;color:#075b91;font-weight:1000}.stat b{font-size:24px;display:block}.celebrate{font-size:42px;animation:spin 2s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:430px){.panel{padding:18px}.homeActions .smallBtn{font-size:13px}.animalPanel{padding:18px 12px}.grid{gap:8px}.animal{border-radius:18px}.questionCard{top:70px}.playfield{top:184px}.mascot{width:47%;min-width:190px}.knife{left:62%;bottom:18%;width:74px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
-</style></head>
-<body><main id="app">
-<section id="splash" class="screen active"><div class="sparkles"></div><div class="panel"><img class="heroLion" src="./lion.png" alt="Happy lion mascot"><div class="logo"><span>FRUIT</span>SLICE GK</div><div class="tag">LEARN • PLAY • GROW</div><div class="btn play" id="splashPlay">▶ PLAY</div><div class="tag">Loading fun... ⭐</div></div></section>
-<section id="home" class="screen"><div class="sparkles"></div><div class="panel"><img class="heroLion" src="./lion.png" alt="Happy lion mascot"><div class="logo"><span>FRUIT</span>SLICE GK</div><div class="tag">Pick your animal, then slice the right answer!</div><button class="btn play" id="playBtn">▶ PLAY</button><button class="btn choose" id="chooseBtn">🐾 CHOOSE MY ANIMAL</button><div class="homeActions"><button class="smallBtn" id="learnBtn">📖 Learn</button><button class="smallBtn" id="howBtn">❓ How</button><button class="smallBtn" id="statsBtn">🏆 Stats</button></div></div></section>
-<section id="animals" class="screen"><div class="sparkles"></div><div class="panel animalPanel"><div class="animalTitle">🐾 Pick Your Animal</div><div class="animalSub">Your animal will cheer for you!</div><div class="grid" id="animalGrid"></div><button class="btn play" id="doneBtn">✓ DONE</button></div></section>
-<section id="game" class="screen"><div class="gameHeader"><div class="pill">⭐ <span id="score">0</span></div><div class="gameTitle">🍎 Fruit Slice GK</div><button class="pause" id="pause">Ⅱ</button><div class="pill">❤️ <span id="lives">3</span></div></div><div class="questionCard"><div id="question">Get ready!</div><div class="instruction">Slice the correct fruit before it falls!</div></div><div class="playfield" id="field"><div class="cloud c1"></div><div class="cloud c2"></div><div class="ground"></div><div class="flowers">🌼 🌸 🌼 🌸</div><div id="fruits"></div><div class="mascot"><img src="./lion.png" alt="Lion mascot"></div><div class="knife" id="knife"></div></div></section>
-<section id="result" class="screen"><div class="sparkles"></div><div class="panel"><div class="celebrate">⭐🎉⭐</div><h1>Great Job!</h1><img class="resultMascot" src="./lion.png" alt="Happy lion mascot"><div class="stats"><div class="stat"><b>⭐ <span id="rStars">0</span></b>Stars</div><div class="stat"><b>❤️ <span id="rLives">0</span></b>Lives</div><div class="stat"><b>🎯 <span id="rScore">0</span></b>Score</div></div><p style="font-weight:900;color:#52717e">Keep going! You're doing amazing! 🌟</p><button class="btn play" id="again">↻ PLAY AGAIN</button><button class="btn secondary" id="goHome">⌂ HOME</button></div></section>
-</main>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#78dff5;color:#173b52;overflow-x:hidden}
+button{font:inherit}
+#app{min-height:100vh;background:linear-gradient(#75dcf5 0 58%,#88df72 58%);position:relative}
+.screen{display:none;min-height:100vh;padding:18px 14px 24px;position:relative;overflow:hidden}
+.screen.active{display:flex;flex-direction:column}
+.decor{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.cloud{position:absolute;width:110px;height:26px;background:#ffffffaa;border-radius:30px}.cloud:before,.cloud:after{content:"";position:absolute;background:inherit;border-radius:50%}.cloud:before{width:52px;height:52px;left:18px;top:-25px}.cloud:after{width:60px;height:60px;right:15px;top:-30px}
+.c1{top:100px;left:4%}.c2{top:175px;right:2%;transform:scale(.75)}
+.flowers{position:absolute;bottom:0;left:0;right:0;height:95px;background:radial-gradient(circle at 10% 70%,#ff8bb3 0 7px,transparent 8px),radial-gradient(circle at 24% 82%,#ffd45c 0 7px,transparent 8px),radial-gradient(circle at 42% 70%,#ff8bb3 0 7px,transparent 8px),radial-gradient(circle at 65% 84%,#ffd45c 0 7px,transparent 8px),radial-gradient(circle at 86% 70%,#ff8bb3 0 7px,transparent 8px)}
+.topbar{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:8px;background:#ffffffed;border-radius:22px;padding:10px 14px;box-shadow:0 5px 0 #5a8f7a33}
+.brand{font-size:clamp(22px,7vw,34px);font-weight:1000;color:#6330a5;text-align:center;text-shadow:0 2px #fff}
+.btn{border:0;border-radius:20px;padding:14px 22px;font-weight:1000;cursor:pointer;min-height:48px;box-shadow:0 5px 0 #5a3d9633}
+.primary{background:#ffd34e;color:#563c11}.purple{background:#6735b4;color:#fff}.green{background:#52c948;color:#fff}.white{background:#fff;color:#563c96}
+.hero{position:relative;z-index:3;display:flex;flex:1;align-items:center;justify-content:center;flex-direction:column;gap:14px;text-align:center}
+.hero h1{font-size:clamp(38px,11vw,62px);line-height:.95;margin:0;color:#fff;text-shadow:0 4px #6330a5,0 7px 0 #ffffff44}
+.hero p{font-weight:900;background:#fff;border-radius:18px;padding:9px 15px;margin:0}
+.character{width:210px;height:270px;position:relative;transform-origin:50% 90%;filter:drop-shadow(0 10px 6px #40505a44)}
+.character.small{width:125px;height:160px;filter:drop-shadow(0 6px 4px #40505a33)}
+.character svg{width:100%;height:100%;overflow:visible}
+.character .knife{transform-box:fill-box;transform-origin:12% 80%;transition:transform .12s ease}
+.animJump{animation:jumpAttack 1s cubic-bezier(.18,.78,.22,1) forwards}
+.animLand{animation:landBack .62s cubic-bezier(.2,.8,.25,1) forwards}
+.knifeSwing{transform:rotate(-78deg)}
+@keyframes jumpAttack{0%{transform:translate(0,0) rotate(0)}32%{transform:translate(var(--dx),-115px) rotate(-5deg)}68%{transform:translate(calc(var(--dx)*.92),-245px) rotate(5deg)}100%{transform:translate(var(--dx),-265px) rotate(0)}}
+@keyframes landBack{0%{transform:translate(var(--dx),-265px)}65%{transform:translate(0,8px) scaleY(.93)}100%{transform:translate(0,0) scaleY(1)}}
+#homeCharacter{margin-top:10px}
+.homeBtns{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.panelTitle{text-align:center;position:relative;z-index:3;color:#fff;font-size:30px;font-weight:1000;text-shadow:0 3px #6330a5;margin:10px 0}
+.animalGrid{position:relative;z-index:3;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:680px;width:100%;margin:auto}
+.animalCard{border:3px solid transparent;background:#ffffffee;border-radius:22px;padding:8px 4px;min-height:165px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;box-shadow:0 6px 0 #547e6d33}
+.animalCard.selected{border-color:#ffd34e;box-shadow:0 0 0 4px #fff8,0 7px 0 #547e6d33;transform:translateY(-2px)}
+.animalName{font-weight:1000;color:#5b2ca0}
+.gameWrap{position:relative;z-index:3;flex:1;display:flex;flex-direction:column}
+.questionBox{background:#fff;border-radius:20px;padding:12px 16px;margin:10px auto 4px;max-width:560px;text-align:center;font-weight:1000;font-size:clamp(18px,5vw,25px);box-shadow:0 5px 0 #557c6a33}
+.stats{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#ffffffd9;border-radius:18px;padding:8px 12px;font-weight:1000}
+.field{position:relative;flex:1;min-height:520px;overflow:hidden;border-radius:25px}
+.option{position:absolute;width:112px;height:112px;border:0;background:transparent;cursor:pointer;z-index:8;touch-action:manipulation}
+.option .fruit{width:86px;height:86px;margin:13px auto 0;position:relative;filter:drop-shadow(0 8px 4px #40505a44)}
+.option .label{display:inline-block;background:#fff;border-radius:14px;padding:5px 9px;font-size:13px;font-weight:1000;color:#173b52;white-space:nowrap}
+.fruitShape{position:absolute;inset:0}
+.apple{background:radial-gradient(circle at 30% 25%,#fff9 0 8%,#ff6d6d 9% 25%,#ef4b4b 55%,#cf2e42);border-radius:48% 52% 50% 48%;border:4px solid #b52e3b}
+.orange{background:radial-gradient(circle at 30% 25%,#fff8 0 7%,#ffc75b 8% 25%,#f4a62c 60%,#dc7d16);border-radius:50%;border:4px solid #c97c1d}
+.banana{background:linear-gradient(125deg,#fff07b,#ffd33f 50%,#e5a51d);border-radius:75% 25% 75% 25%;transform:rotate(-25deg);border:4px solid #c48b19}
+.grapes{background:radial-gradient(circle at 28% 25%,#fff8 0 6%,#a96be8 7% 30%,#7040bb 65%,#4e2b96);border-radius:45%;border:4px solid #5a3499}
+.watermelon{background:repeating-linear-gradient(75deg,#3e9b46 0 12px,#72bd50 12px 21px);border-radius:50%;border:5px solid #24753b}
+.strawberry{background:linear-gradient(135deg,#ff6d72,#e7354d);clip-path:polygon(50% 100%,7% 30%,22% 8%,50% 18%,78% 8%,93% 30%);border:4px solid #c72e42}
+.pineapple{background:repeating-linear-gradient(45deg,#f7c74b 0 9px,#e6aa2e 9px 12px);border-radius:45% 45% 38% 38%;border:4px solid #c18b1d}
+.melon{background:linear-gradient(#c7e66d,#80bf43);border-radius:50%;border:4px solid #57983c}
+.option:nth-child(1){left:10%;top:34px}.option:nth-child(2){left:50%;top:120px}.option:nth-child(3){right:7%;top:48px}
+.option.fall1{animation:fall1 4.7s linear forwards}.option.fall2{animation:fall2 4.4s linear forwards}.option.fall3{animation:fall3 4.9s linear forwards}
+@keyframes fall1{to{transform:translateY(380px) rotate(12deg)}}@keyframes fall2{to{transform:translateY(300px) rotate(-15deg)}}@keyframes fall3{to{transform:translateY(360px) rotate(10deg)}}
+.mascotGame{position:absolute;bottom:4px;left:50%;margin-left:-105px;z-index:10}
+.sliceLine{position:absolute;z-index:15;left:50%;top:230px;width:180px;height:18px;margin-left:-90px;border-radius:50%;background:linear-gradient(90deg,transparent,#fff,#fff,transparent);transform:rotate(-28deg) scaleX(0);opacity:0}
+.sliceLine.show{animation:sweep .38s ease-out forwards}@keyframes sweep{20%{opacity:1;transform:rotate(-28deg) scaleX(1)}100%{opacity:0;transform:rotate(-28deg) scaleX(1.2)}}
+.cutLeft,.cutRight{position:absolute;z-index:14;width:46px;height:78px;border-radius:45%;opacity:0}
+.cutLeft{background:#ef4b4b;left:calc(50% - 52px);top:155px}.cutRight{background:#ef4b4b;left:calc(50% + 6px);top:155px}
+.cutLeft.show{animation:pieceL .65s forwards}.cutRight.show{animation:pieceR .65s forwards}
+@keyframes pieceL{0%{opacity:1}100%{opacity:0;transform:translate(-70px,65px) rotate(-35deg)}}@keyframes pieceR{0%{opacity:1}100%{opacity:0;transform:translate(70px,65px) rotate(35deg)}}
+.feedback{position:absolute;z-index:30;top:42%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:24px;padding:14px 22px;font-size:26px;font-weight:1000;color:#2d9c32;display:none;box-shadow:0 8px 0 #557c6a33}.feedback.show{display:block}
+.bottomControls{display:flex;justify-content:center;gap:8px;padding:6px 0}
+.progress{height:10px;background:#ffffff99;border-radius:10px;overflow:hidden;margin:5px 0}.progress>i{display:block;height:100%;background:#7a42c7;width:0}
+.resultBox{position:relative;z-index:3;text-align:center;margin:auto;background:#fff;border-radius:28px;padding:22px;max-width:520px;width:100%;box-shadow:0 10px 0 #557c6a33}.stars{font-size:48px;letter-spacing:4px}.resultBox h2{font-size:38px;color:#2d9c32;margin:6px}.scoreBig{font-size:32px;font-weight:1000;color:#6330a5}
+@media(max-width:420px){.animalGrid{grid-template-columns:repeat(2,1fr)}.animalCard{min-height:150px}.character.small{width:110px;height:145px}.field{min-height:500px}.option{width:105px;height:105px}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app">
+<section id="home" class="screen active">
+<div class="decor"><div class="cloud c1"></div><div class="cloud c2"></div><div class="flowers"></div></div>
+<div class="hero">
+<div class="brand">🍎 FRUIT SLICE GK 🍉</div>
+<div id="homeCharacter" class="character"></div>
+<p>Learn GK • Slice the correct fruit!</p>
+<div class="homeBtns"><button class="btn primary" id="playBtn">▶ PLAY</button><button class="btn purple" id="chooseBtn">🐾 CHOOSE MY ANIMAL</button></div>
+</div>
+</section>
+
+<section id="animals" class="screen">
+<div class="decor"><div class="cloud c1"></div><div class="cloud c2"></div><div class="flowers"></div></div>
+<div class="panelTitle">🐾 Choose Your Animal</div>
+<div id="animalGrid" class="animalGrid"></div>
+<div class="homeBtns"><button class="btn white" id="animalBack">← BACK</button><button class="btn primary" id="animalPlay">▶ PLAY</button></div>
+</section>
+
+<section id="game" class="screen">
+<div class="decor"><div class="cloud c1"></div><div class="cloud c2"></div><div class="flowers"></div></div>
+<div class="gameWrap">
+<div class="stats"><span id="qCount">Question 1/10</span><span id="score">⭐ 0</span><span id="lives">❤️ 3</span></div>
+<div class="progress"><i id="progressBar"></i></div>
+<div class="questionBox" id="question">Which fruit is red?</div>
+<div class="field" id="field">
+<button class="option" data-i="0" aria-label="Answer option 1"><span class="fruit"><span class="fruitShape"></span></span><span class="label"></span></button>
+<button class="option" data-i="1" aria-label="Answer option 2"><span class="fruit"><span class="fruitShape"></span></span><span class="label"></span></button>
+<button class="option" data-i="2" aria-label="Answer option 3"><span class="fruit"><span class="fruitShape"></span></span><span class="label"></span></button>
+<div class="sliceLine" id="sliceLine"></div><div class="cutLeft" id="cutLeft"></div><div class="cutRight" id="cutRight"></div>
+<div id="gameCharacter" class="character mascotGame"></div>
+<div id="feedback" class="feedback">⭐ CORRECT!</div>
+</div>
+<div class="bottomControls"><button class="btn white" id="skipBtn">⏭ SKIP</button><button class="btn purple" id="soundBtn">🔊 SOUND</button></div>
+</div>
+</section>
+
+<section id="result" class="screen">
+<div class="decor"><div class="cloud c1"></div><div class="cloud c2"></div><div class="flowers"></div></div>
+<div class="resultBox"><div id="resultCharacter" class="character" style="margin:auto"></div><div class="stars">⭐ ⭐ ⭐</div><h2>Great Job!</h2><div class="scoreBig" id="finalScore">Score: 0</div><p id="finalText">You're amazing!</p><div class="homeBtns"><button class="btn primary" id="againBtn">▶ PLAY AGAIN</button><button class="btn purple" id="resultHome">⌂ HOME</button></div></div>
+</section>
+</div>
+
 <script>
-(()=>{
-const $=s=>document.querySelector(s), screens=[...document.querySelectorAll('.screen')];
-const animals=[['Lion','🦁'],['Tiger','🐯'],['Panda','🐼'],['Elephant','🐘'],['Bunny','🐰'],['Monkey','🐵'],['Fox','🦊'],['Koala','🐨'],['Frog','🐸'],['Puppy','🐶'],['Kitten','🐱'],['Unicorn','🦄']];
-const facts=[['What force pulls things towards Earth?','Gravity','Wind','Light'],['What is the currency of India?','Rupee','Dollar','Pound'],['Which direction does the Sun rise from?','East','West','North'],['What appliance keeps food cold?','Refrigerator','Oven','Fan'],['What do magnets attract strongly?','Iron','Paper','Wood'],['Which planet is known as the Red Planet?','Mars','Venus','Jupiter'],['How many legs does a spider have?','Eight','Six','Four'],['What gas do humans need to breathe?','Oxygen','Helium','Carbon dioxide'],['Which animal is known as the king of the jungle?','Lion','Rabbit','Panda'],['What is 5 + 5?','10','12','15'],['Which ocean is the largest?','Pacific Ocean','Indian Ocean','Arctic Ocean'],['How many days are in a week?','Seven','Five','Ten'],['Which shape has three sides?','Triangle','Square','Circle'],['What do bees make?','Honey','Milk','Bread'],['Which bird cannot fly?','Penguin','Eagle','Parrot'],['What is frozen water called?','Ice','Steam','Rain'],['Which organ pumps blood around the body?','Heart','Lung','Ear'],['How many colors are in a rainbow?','Seven','Five','Ten'],['Which fruit is yellow and curved?','Banana','Apple','Grape'],['What do plants need from the Sun?','Light','Ice','Salt'],['Which is the fastest land animal?','Cheetah','Elephant','Turtle'],['How many months are in a year?','Twelve','Ten','Eight'],['Which star is closest to Earth?','Sun','Sirius','Polaris'],['What is a baby dog called?','Puppy','Kitten','Calf'],['Which continent is India in?','Asia','Europe','Africa'],['What do we use to tell time?','Clock','Spoon','Plate'],['Which animal has a long trunk?','Elephant','Tiger','Frog'],['What is 10 - 3?','7','6','8'],['Which season is usually the coldest?','Winter','Summer','Spring'],['Which part of a plant absorbs water?','Roots','Flower','Fruit'],['What is the largest animal on Earth?','Blue whale','Lion','Giraffe'],['Which planet do we live on?','Earth','Mars','Saturn'],['What do cows give us?','Milk','Juice','Honey'],['How many fingers are on one hand?','Five','Four','Six'],['Which insect has colorful wings?','Butterfly','Ant','Beetle'],['What is the opposite of hot?','Cold','Tall','Fast'],['Which animal says meow?','Cat','Dog','Cow'],['What do we call water falling from clouds?','Rain','Smoke','Dust'],['Which is a primary color?','Blue','Pink','Brown'],['What do you use to see?','Eyes','Ears','Nose'],['Which animal lives in a hive?','Bee','Fish','Horse'],['What is 2 × 5?','10','7','12'],['Which planet has rings?','Saturn','Mercury','Earth'],['What is the hard outer part of an egg called?','Shell','Skin','Bark'],['Which animal is famous for black and white stripes?','Zebra','Camel','Fox'],['What do fish use to breathe in water?','Gills','Wings','Fur'],['Which is bigger?','Elephant','Mouse','Ant'],['What is the opposite of day?','Night','Noon','Morning'],['Which fruit is often red and has seeds on its skin?','Strawberry','Banana','Orange'],['How many sides does a square have?','Four','Three','Five'],['Which country is famous for the Taj Mahal?','India','Japan','Brazil'],['What is the nearest planet to the Sun?','Mercury','Earth','Neptune'],['What do birds use to fly?','Wings','Fins','Paws'],['Which animal can change its color to hide?','Chameleon','Cow','Horse'],['What is 20 divided by 2?','10','5','20'],['Which is a natural satellite of Earth?','Moon','Sun','Mars'],['What is the tallest land animal?','Giraffe','Tiger','Rabbit'],['What do we call a group of stars forming a pattern?','Constellation','Rainbow','Cloud'],['Which material is usually transparent?','Glass','Stone','Wood'],['What is the boiling point of water in Celsius?','100°C','50°C','10°C'],['Which animal has a pouch for its baby?','Kangaroo','Lion','Panda'],['What is 9 + 1?','10','11','8'],['Which body part helps you hear?','Ears','Eyes','Hands'],['What do plants release during photosynthesis?','Oxygen','Smoke','Sand'],['Which planet is famous for being the largest?','Jupiter','Mars','Mercury'],['What is a baby cat called?','Kitten','Puppy','Cub'],['Which is a mammal?','Dolphin','Shark','Trout'],['What do we call melted rock below Earth’s surface?','Magma','Ice','Clay'],['Which instrument has black and white keys?','Piano','Drum','Flute'],['How many hours are in a day?','24','12','48'],['Which animal is the largest bird?','Ostrich','Sparrow','Parrot'],['What is the color of grass usually?','Green','Purple','Blue'],['Which sense uses your nose?','Smell','Sight','Hearing'],['What is 7 + 3?','10','9','12'],['Which planet is closest in size to Earth?','Venus','Jupiter','Saturn'],['What do we call a scientist who studies space?','Astronomer','Chef','Pilot'],['Which animal is known for its black-and-white pattern and bamboo diet?','Panda','Lion','Horse'],['What is the opposite of big?','Small','Wide','Heavy'],['Which liquid do humans need to drink every day?','Water','Oil','Paint'],['What do we call the colorful arc seen after rain?','Rainbow','Shadow','Cloud'],['Which part of a flower attracts many bees?','Petals','Roots','Stem'],['How many wheels does a bicycle have?','Two','Three','Four'],['Which is hotter?','Sun','Ice cube','Snow'],['What do we call a person who flies an airplane?','Pilot','Doctor','Farmer'],['Which animal has a shell?','Turtle','Tiger','Deer'],['What is 6 × 2?','12','8','14'],['Which direction is opposite to north?','South','East','West'],['What do you call a house for a dog?','Kennel','Nest','Stable'],['Which food is made from wheat and baked?','Bread','Yogurt','Honey'],['What is Earth’s shape approximately?','Round','Flat','Square'],['Which animal is famous for building dams?','Beaver','Lion','Goat'],['What is 15 - 5?','10','5','20'],['Which gas makes up most of Earth’s atmosphere?','Nitrogen','Oxygen','Hydrogen'],['What do we call water vapor turning into liquid?','Condensation','Melting','Freezing'],['Which is the smallest prime number?','2','1','3'],['What is a baby cow called?','Calf','Foal','Lamb'],['Which country has a maple leaf on its flag?','Canada','India','Egypt'],['What is the largest continent?','Asia','Europe','Australia'],['Which animal is known for carrying a home on its back?','Snail','Horse','Dog'],['What is 8 + 2?','10','12','9'],['Which planet is known for its beautiful blue color and strong winds?','Neptune','Mars','Mercury']];
-const qs=[];const prefixes=['','Quick one! ','Super question! ','Fun GK! ','Brain booster! ','Ready, champ? '];for(let i=0;i<12;i++)facts.forEach(f=>qs.push({q:prefixes[i%prefixes.length]+f[0],a:[f[1],f[2],f[3]]}));
-let animal='Lion',score=0,lives=3,round=0,idx=0,active=false,paused=false,fallTimer=null;
-const show=id=>screens.forEach(s=>s.classList.toggle('active',s.id===id));
-const grid=$('#animalGrid');animals.forEach(([name,emoji])=>{const b=document.createElement('button');b.className='animal'+(name===animal?' selected':'');b.innerHTML='<div class="emoji">'+emoji+'</div><div>'+name+'</div>';b.addEventListener('click',()=>{animal=name;[...grid.children].forEach(x=>x.classList.remove('selected'));b.classList.add('selected')});grid.appendChild(b)});
-function shuffled(a){return [...a].sort(()=>Math.random()-.5)}
-function nextQuestion(){if(!active||paused)return;clearTimeout(fallTimer);const item=qs[idx++%qs.length];$('#question').textContent=item.q;const holder=$('#fruits');holder.innerHTML='';const answers=shuffled(item.a);answers.forEach((ans,i)=>{const f=document.createElement('button');f.className='fruit lane'+i+' f'+i+' falling';f.style.setProperty('--dur',(7+Math.random()*1.5)+'s');f.innerHTML='<span>'+ans+'</span>';f.dataset.answer=ans;f.addEventListener('pointerdown',e=>{e.preventDefault();choose(f,ans===item.a[0])},{passive:false});holder.appendChild(f)});fallTimer=setTimeout(()=>{if(active&&!paused){lives--;$('#lives').textContent=lives;round++;if(lives<=0||round>=10)finish();else nextQuestion()}},9000)}
-function choose(el,correct){if(!active||paused)return;active=false;clearTimeout(fallTimer);const r=el.getBoundingClientRect(),fx=document.createElement('div');fx.className='slice';fx.textContent=correct?'✨💥':'💔';fx.style.left=r.left+'px';fx.style.top=r.top+'px';document.body.appendChild(fx);setTimeout(()=>fx.remove(),700);el.style.transform='scale(1.25) rotate(20deg)';el.style.opacity='0';$('#knife').animate([{transform:'rotate(-5deg)'},{transform:'rotate(-48deg)'},{transform:'rotate(3deg)'}],{duration:360});if(correct)score+=10;else lives--;round++;$('#score').textContent=score;$('#lives').textContent=lives;setTimeout(()=>{if(lives<=0||round>=10)finish();else{active=true;nextQuestion()}},650)}
-function start(){score=0;lives=3;round=0;idx=Math.floor(Math.random()*qs.length);paused=false;active=true;$('#score').textContent='0';$('#lives').textContent='3';$('#pause').textContent='Ⅱ';show('game');nextQuestion()}
-function finish(){active=false;clearTimeout(fallTimer);$('#rStars').textContent=Math.floor(score/10);$('#rLives').textContent=lives;$('#rScore').textContent=score;show('result')}
-$('#splashPlay').addEventListener('click',()=>show('home'));$('#playBtn').addEventListener('click',start);$('#chooseBtn').addEventListener('click',()=>show('animals'));$('#doneBtn').addEventListener('click',()=>show('home'));$('#again').addEventListener('click',start);$('#goHome').addEventListener('click',()=>show('home'));$('#pause').addEventListener('click',()=>{if(!active&&round>=10)return;paused=!paused;$('#pause').textContent=paused?'▶':'Ⅱ';if(!paused){active=true;nextQuestion()}});$('#learnBtn').addEventListener('click',()=>alert('Learn by playing! Read the question, find the correct answer, and slice it.'));$('#howBtn').addEventListener('click',()=>alert('How to play: choose your animal, read the question, then tap the correct fruit before it falls.'));$('#statsBtn').addEventListener('click',()=>alert('Your score and stars are shown after each 10-question round.'));
-setTimeout(()=>show('home'),1400);
+(() => {
+'use strict';
+
+const animals = [
+  ['lion','🦁','Lion','#f2b544','#8d5b2a'],['tiger','🐯','Tiger','#f28b35','#5d3b2b'],
+  ['panda','🐼','Panda','#e9eef4','#252b35'],['elephant','🐘','Elephant','#aeb8c5','#687484'],
+  ['bunny','🐰','Bunny','#f1b9d8','#b86c9b'],['monkey','🐵','Monkey','#b8794e','#6c412e'],
+  ['fox','🦊','Fox','#ef8a38','#9d4b20'],['koala','🐨','Koala','#a9b1bb','#66707b'],
+  ['frog','🐸','Frog','#76d76a','#358a40'],['puppy','🐶','Puppy','#d4aa76','#7d5638'],
+  ['kitten','🐱','Kitten','#d5a7e8','#8d5aae'],['unicorn','🦄','Unicorn','#ef9fe9','#75459a']
+];
+
+let selected='lion', score=0, lives=3, qNo=0, busy=false, current=null, audioCtx=null;
+const fruitTypes=[
+ ['apple','Apple'],['orange','Orange'],['banana','Banana'],['grapes','Grapes'],
+ ['watermelon','Watermelon'],['strawberry','Strawberry'],['pineapple','Pineapple'],['melon','Melon']
+];
+
+const facts=[
+ ['What is the largest planet?','Jupiter','Saturn','Mars'],['Which animal is known as the king of the jungle?','Lion','Panda','Rabbit'],
+ ['How many days are in a week?','7','5','10'],['What color is the sky on a clear day?','Blue','Green','Purple'],
+ ['Which fruit is usually yellow and curved?','Banana','Apple','Grape'],['How many legs does a spider have?','8','6','4'],
+ ['Which planet do we live on?','Earth','Mars','Venus'],['What do bees make?','Honey','Milk','Bread'],
+ ['Which animal has a long trunk?','Elephant','Tiger','Fox'],['How many months are in a year?','12','10','8'],
+ ['Which is the fastest land animal?','Cheetah','Elephant','Panda'],['What do plants need from the sun?','Light','Ice','Sand'],
+ ['Which ocean is the largest?','Pacific Ocean','Indian Ocean','Arctic Ocean'],['How many sides does a triangle have?','3','4','5'],
+ ['Which bird cannot fly and lives in Antarctica?','Penguin','Eagle','Parrot'],['What is frozen water called?','Ice','Steam','Cloud'],
+ ['Which animal gives us wool?','Sheep','Horse','Dog'],['What is the opposite of hot?','Cold','Tall','Fast'],
+ ['Which star is closest to Earth?','Sun','Sirius','Polaris'],['How many wheels does a bicycle have?','2','3','4'],
+ ['Which shape has four equal sides?','Square','Circle','Triangle'],['What do cows give us?','Milk','Juice','Honey'],
+ ['Which animal is famous for black-and-white stripes?','Zebra','Giraffe','Bear'],['Which fruit is often red and has seeds on its outside?','Strawberry','Banana','Orange'],
+ ['How many fingers are on one hand?','5','4','6'],['Which gas do humans need to breathe?','Oxygen','Helium','Carbon dioxide'],
+ ['What is the tallest animal?','Giraffe','Lion','Penguin'],['Which month comes after March?','April','May','February'],
+ ['Which animal hops and has a pouch?','Kangaroo','Tiger','Whale'],['What is 5 + 5?','10','12','8'],
+ ['Which is a mammal?','Dolphin','Crocodile','Frog'],['Which fruit is orange in color?','Orange','Grape','Watermelon'],
+ ['How many continents are there?','7','5','9'],['What do we use to see?','Eyes','Ears','Nose'],
+ ['Which animal says “moo”?','Cow','Cat','Dog'],['Which planet is famous for its rings?','Saturn','Earth','Mercury'],
+ ['What is the baby of a dog called?','Puppy','Kitten','Calf'],['What is the baby of a cat called?','Kitten','Puppy','Foal'],
+ ['Which animal is the largest on Earth?','Blue whale','Lion','Elephant'],['What do fish use to breathe in water?','Gills','Wings','Fur'],
+ ['Which fruit has a green rind and red inside?','Watermelon','Banana','Apple'],['How many hours are in a day?','24','12','36'],
+ ['What is the capital of India?','New Delhi','Mumbai','Chennai'],['Which festival is known as the festival of lights?','Diwali','Holi','Pongal'],
+ ['Which animal is called a ship of the desert?','Camel','Horse','Elephant'],['What do butterflies start life as?','Caterpillars','Puppies','Seeds'],
+ ['Which instrument has black and white keys?','Piano','Drum','Flute'],['Which season is usually the coldest?','Winter','Summer','Spring'],
+ ['What is the largest land animal?','African elephant','Tiger','Giraffe'],['Which fruit is made into raisins when dried?','Grapes','Bananas','Apples']
+];
+
+function makeQuestions(){
+  const out=[];
+  for(let round=0;round<22;round++){
+    for(const f of facts){
+      const variants=[
+        [f[0],f[1],f[2],f[3]],[`GK: ${f[0]}`,f[1],f[3],f[2]],
+        [`Can you answer? ${f[0]}`,f[2],f[1],f[3]],[`Quick quiz! ${f[0]}`,f[1],f[2],f[3]]
+      ];
+      out.push(variants[round%variants.length]);
+      if(out.length>=1000)return out;
+    }
+  }
+  return out;
+}
+const questions=makeQuestions();
+
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+
+function characterSVG(kind){
+  const a=animals.find(x=>x[0]===kind)||animals[0], body=a[3], dark=a[4];
+  const common = `
+  <defs>
+   <linearGradient id="body" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${body}"/><stop offset=".55" stop-color="${body}"/><stop offset="1" stop-color="${dark}"/></linearGradient>
+   <linearGradient id="blade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".6" stop-color="#d7e0ea"/><stop offset="1" stop-color="#7b8a9b"/></linearGradient>
+  </defs>`;
+  let ears='', extra='', mane='';
+  if(kind==='lion') mane=`<circle cx="95" cy="78" r="67" fill="#a9642d" stroke="#684020" stroke-width="5"/>`;
+  if(kind==='tiger') extra=`<path d="M60 65l18 12M130 65l-18 12M62 105l18-8M128 105l-18-8" stroke="#633c27" stroke-width="7" stroke-linecap="round"/>`;
+  if(kind==='panda') extra=`<ellipse cx="73" cy="82" rx="15" ry="21" fill="#252b35" transform="rotate(25 73 82)"/><ellipse cx="117" cy="82" rx="15" ry="21" fill="#252b35" transform="rotate(-25 117 82)"/>`;
+  if(kind==='elephant') ears=`<ellipse cx="37" cy="92" rx="30" ry="42" fill="#e79a9f" stroke="${dark}" stroke-width="5"/><ellipse cx="153" cy="92" rx="30" ry="42" fill="#e79a9f" stroke="${dark}" stroke-width="5"/>`;
+  if(kind==='bunny') ears=`<ellipse cx="70" cy="32" rx="17" ry="40" fill="${body}" stroke="${dark}" stroke-width="5"/><ellipse cx="120" cy="32" rx="17" ry="40" fill="${body}" stroke="${dark}" stroke-width="5"/>`;
+  if(kind==='monkey') ears=`<circle cx="40" cy="82" r="25" fill="${body}" stroke="${dark}" stroke-width="5"/><circle cx="150" cy="82" r="25" fill="${body}" stroke="${dark}" stroke-width="5"/>`;
+  if(kind==='fox') extra=`<path d="M58 44L67 14 88 44M132 44L123 14 102 44" fill="${body}" stroke="${dark}" stroke-width="5"/>`;
+  if(kind==='koala') ears=`<circle cx="43" cy="58" r="29" fill="${body}" stroke="${dark}" stroke-width="5"/><circle cx="147" cy="58" r="29" fill="${body}" stroke="${dark}" stroke-width="5"/>`;
+  if(kind==='frog') extra=`<circle cx="68" cy="42" r="22" fill="${body}" stroke="${dark}" stroke-width="5"/><circle cx="122" cy="42" r="22" fill="${body}" stroke="${dark}" stroke-width="5"/>`;
+  if(kind==='puppy') extra=`<path d="M48 53Q25 48 36 95Q48 117 62 91M142 53Q165 48 154 95Q142 117 128 91" fill="${body}" stroke="${dark}" stroke-width="5"/>`;
+  if(kind==='kitten') extra=`<path d="M50 54L42 17 78 39M140 54L148 17 112 39" fill="${body}" stroke="${dark}" stroke-width="5"/>`;
+  if(kind==='unicorn') extra=`<path d="M95 34L108 3 121 38Z" fill="#ffd65b" stroke="#a87820" stroke-width="4"/><path d="M55 48Q75 25 92 50Q108 24 128 51Q109 68 95 85Q77 66 55 48Z" fill="#ee72c5"/>`;
+  const eye=`<circle cx="73" cy="83" r="10" fill="#263449"/><circle cx="117" cy="83" r="10" fill="#263449"/><circle cx="69" cy="79" r="4" fill="#fff"/><circle cx="113" cy="79" r="4" fill="#fff"/>`;
+  const face = kind==='elephant'
+    ? `<path d="M95 85Q88 111 101 118Q113 121 123 108" fill="none" stroke="${dark}" stroke-width="9" stroke-linecap="round"/>`
+    : `<ellipse cx="95" cy="108" rx="27" ry="18" fill="#ffe5d8" stroke="${dark}" stroke-width="3"/><path d="M82 108Q95 120 108 108" fill="none" stroke="${dark}" stroke-width="4" stroke-linecap="round"/>`;
+  return `<svg viewBox="0 0 190 270" role="img" aria-label="${esc(a[2])} holding a knife">${common}
+  ${mane}${ears}${extra}
+  <ellipse cx="95" cy="171" rx="58" ry="68" fill="url(#body)" stroke="${dark}" stroke-width="5"/>
+  <rect x="61" y="205" width="27" height="48" rx="13" fill="${body}" stroke="${dark}" stroke-width="5"/>
+  <rect x="102" y="205" width="27" height="48" rx="13" fill="${body}" stroke="${dark}" stroke-width="5"/>
+  <ellipse cx="74" cy="250" rx="18" ry="8" fill="${dark}"/><ellipse cx="116" cy="250" rx="18" ry="8" fill="${dark}"/>
+  <ellipse cx="95" cy="83" rx="57" ry="57" fill="url(#body)" stroke="${dark}" stroke-width="5"/>
+  ${eye}${face}
+  <path d="M49 145Q27 161 45 184" fill="none" stroke="${body}" stroke-width="18" stroke-linecap="round"/>
+  <path d="M140 145Q165 155 153 180" fill="none" stroke="${body}" stroke-width="18" stroke-linecap="round"/>
+  <path d="M76 145Q95 158 114 145V211H76Z" fill="${kind==='panda'||kind==='koala'?'#e9eef4':'#4f8fd5'}" opacity=".88"/>
+  <circle cx="84" cy="158" r="6" fill="#ffd34f"/><circle cx="106" cy="158" r="6" fill="#ffd34f"/>
+  <g class="knife"><rect x="143" y="165" width="25" height="12" rx="5" fill="#704522"/><path d="M163 171L188 150Q192 147 190 154L171 180Z" fill="url(#blade)" stroke="#596778" stroke-width="3"/></g>
+  </svg>`;
+}
+
+function setCharacter(id,kind,small=false){
+  const el=document.getElementById(id); el.className='character'+(small?' small':''); el.innerHTML=characterSVG(kind);
+}
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function beep(type){
+  try{
+    if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==='suspended')audioCtx.resume();
+    const o=audioCtx.createOscillator(),g=audioCtx.createGain(),n=audioCtx.currentTime;
+    o.connect(g);g.connect(audioCtx.destination);
+    const map={click:[520,.07,'sine'],slice:[180,.18,'sawtooth'],correct:[660,.16,'sine'],wrong:[130,.22,'square'],jump:[250,.12,'triangle']};
+    const [freq,dur,wave]=map[type]||map.click;o.type=wave;o.frequency.setValueAtTime(freq,n);
+    if(type==='correct')o.frequency.exponentialRampToValueAtTime(990,n+dur);
+    if(type==='slice')o.frequency.exponentialRampToValueAtTime(70,n+dur);
+    g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(.08,n+.015);g.gain.exponentialRampToValueAtTime(.0001,n+dur);
+    o.start(n);o.stop(n+dur+.03);
+  }catch(_){}
+}
+
+function buildAnimals(){
+  const grid=document.getElementById('animalGrid');grid.innerHTML='';
+  animals.forEach(a=>{
+    const b=document.createElement('button');b.type='button';b.className='animalCard'+(selected===a[0]?' selected':'');
+    b.innerHTML=`<div class="character small">${characterSVG(a[0])}</div><div class="animalName">${esc(a[2])}</div>`;
+    b.addEventListener('click',()=>{selected=a[0];buildAnimals();setCharacter('homeCharacter',selected);setCharacter('resultCharacter',selected);beep('click')});
+    grid.appendChild(b);
+  });
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function makeRound(){
+  current=questions[Math.floor(Math.random()*questions.length)];
+  const answers=[current[1],current[2],current[3]];
+  const shuffled=shuffle(answers.map((text,i)=>({text,correct:text===current[1]})));
+  document.getElementById('question').textContent=current[0];
+  document.querySelectorAll('.option').forEach((b,i)=>{
+    b.className='option';b.dataset.correct=shuffled[i].correct?'1':'0';
+    b.querySelector('.label').textContent=shuffled[i].text;
+    const type=fruitTypes[(i+qNo)%fruitTypes.length][0];
+    b.querySelector('.fruitShape').className='fruitShape '+type;
+  });
+  document.getElementById('qCount').textContent=`Question ${qNo+1}/10`;
+  document.getElementById('score').textContent=`⭐ ${score}`;
+  document.getElementById('lives').textContent=`❤️ ${lives}`;
+  document.getElementById('progressBar').style.width=(qNo/10*100)+'%';
+}
+function resetCharacter(){
+  const c=document.getElementById('gameCharacter');c.classList.remove('animJump','animLand');c.style.setProperty('--dx','0px');
+  const k=c.querySelector('.knife');if(k)k.classList.remove('knifeSwing');
+}
+function nextQuestion(){
+  if(qNo>=10||lives<=0){finish();return}
+  qNo++;busy=false;resetCharacter();makeRound();
+}
+function slice(choice){
+  if(busy)return;busy=true;beep('click');
+  const field=document.getElementById('field'),c=document.getElementById('gameCharacter');
+  const rect=choice.getBoundingClientRect(), fr=field.getBoundingClientRect();
+  let dx=rect.left+rect.width/2-(fr.left+fr.width/2);
+  dx=Math.max(-130,Math.min(130,dx));
+  c.style.setProperty('--dx',dx+'px');
+  const k=c.querySelector('.knife');
+  c.classList.add('animJump');beep('jump');
+  setTimeout(()=>{
+    if(choice.dataset.correct==='1'){
+      document.getElementById('feedback').textContent='⭐ CORRECT!';
+      document.getElementById('feedback').classList.add('show');
+      if(k)k.classList.add('knifeSwing');
+      document.getElementById('sliceLine').classList.add('show');
+      document.getElementById('cutLeft').classList.add('show');
+      document.getElementById('cutRight').classList.add('show');
+      beep('slice');setTimeout(()=>beep('correct'),120);score+=10;
+    }else{
+      document.getElementById('feedback').textContent='❌ OOPS!';
+      document.getElementById('feedback').style.color='#d33';
+      document.getElementById('feedback').classList.add('show');lives--;beep('wrong');
+    }
+  },650);
+  setTimeout(()=>{
+    c.classList.remove('animJump');c.classList.add('animLand');
+    if(k)k.classList.remove('knifeSwing');
+  },980);
+  setTimeout(()=>{
+    document.getElementById('feedback').classList.remove('show');
+    document.getElementById('feedback').style.color='#2d9c32';
+    document.getElementById('sliceLine').classList.remove('show');
+    document.getElementById('cutLeft').classList.remove('show');document.getElementById('cutRight').classList.remove('show');
+    nextQuestion();
+  },1650);
+}
+function startGame(){score=0;lives=3;qNo=0;show('game');setCharacter('gameCharacter',selected);makeRound();beep('click')}
+function finish(){
+  document.getElementById('finalScore').textContent=`Score: ${score}`;
+  document.getElementById('finalText').textContent=lives>0?'You did an amazing job!':'Great try! Keep learning and play again!';
+  setCharacter('resultCharacter',selected);show('result');beep('correct');
+}
+document.getElementById('playBtn').addEventListener('click',startGame);
+document.getElementById('chooseBtn').addEventListener('click',()=>{buildAnimals();show('animals');beep('click')});
+document.getElementById('animalBack').addEventListener('click',()=>show('home'));
+document.getElementById('animalPlay').addEventListener('click',startGame);
+document.getElementById('againBtn').addEventListener('click',startGame);
+document.getElementById('resultHome').addEventListener('click',()=>show('home'));
+document.getElementById('skipBtn').addEventListener('click',()=>{if(!busy){beep('click');nextQuestion()}});
+document.getElementById('soundBtn').addEventListener('click',()=>beep('click'));
+document.querySelectorAll('.option').forEach(b=>b.addEventListener('click',()=>slice(b)));
+setCharacter('homeCharacter',selected);setCharacter('resultCharacter',selected);buildAnimals();
 })();
-</script></body></html>
+</script>
+</body>
+</html>
