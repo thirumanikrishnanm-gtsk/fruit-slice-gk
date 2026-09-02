@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0b8eea">
+<link rel="manifest" href="./manifest.json">
+<title>Fruit Slice GK</title>
+<style>
+:root{--blue:#079cf0;--deep:#082d66;--pink:#ff2d8b;--purple:#7b25ff;--orange:#ff9e00;--green:#26cf3a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#062e72;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+button{font:inherit}
+#app{width:100%;height:100%;position:relative;overflow:hidden}
+.screen{position:absolute;inset:0;display:none;overflow:hidden;background:#08a8ed}
+.screen.active{display:block}
+.ref{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;pointer-events:none}
+.hit{position:absolute;border:0;background:transparent;cursor:pointer}
+.glass{background:rgba(255,255,255,.94);border-radius:26px;box-shadow:0 10px 0 rgba(0,74,150,.22),0 18px 35px rgba(0,40,100,.22)}
+/* splash */
+#splash .progress{position:absolute;left:14%;right:14%;bottom:13%;height:18px;border:3px solid white;border-radius:20px;background:#117bd9;overflow:hidden}
+#splash .progress i{display:block;width:72%;height:100%;background:linear-gradient(90deg,#18e43d,#ffd21a,#ff8b16);border-radius:20px;animation:load 1.8s linear}
+@keyframes load{from{width:0}to{width:72%}}
+/* home */
+.homeBtn{left:17%;width:66%;height:9.2%;border-radius:40px}
+#playBtn{top:51.5%}
+#chooseBtn{top:61.5%}
+#learnBtn{left:8%;top:76%;width:19%;height:10%}
+#statsBtn{left:30%;top:76%;width:19%;height:10%}
+#howBtn{left:52%;top:76%;width:19%;height:10%}
+#moreBtn{left:74%;top:76%;width:19%;height:10%}
+/* animals */
+.animalHit{width:29%;height:12.2%;left:5%}
+.animalHit:nth-of-type(2){left:36%}.animalHit:nth-of-type(3){left:67%}
+#animalGrid{position:absolute;left:0;right:0;top:20%;height:57%}
+#animalGrid .animalHit{top:0}
+#animalGrid .r2{top:25%}#animalGrid .r3{top:50%}#animalGrid .r4{top:75%}
+#animalGrid .c1{left:5%}#animalGrid .c2{left:36%}#animalGrid .c3{left:67%}
+#doneBtn{left:16%;width:68%;height:9%;top:87%}
+.selectedPulse{animation:pulse .6s ease}
+@keyframes pulse{50%{transform:scale(1.08)}}
+/* game */
+#game{background:linear-gradient(#078fe6 0 55%,#49d52f 55% 100%)}
+.gameScene{position:absolute;left:0;right:0;top:25%;bottom:0;background:url('./game.png') center bottom/100% 100% no-repeat}
+.gameTop{position:absolute;left:4%;right:4%;top:2%;height:23%;z-index:5}
+.scorePill,.lifePill{position:absolute;top:0;background:white;border-radius:28px;padding:8px 16px;font-weight:900;color:#17345d;box-shadow:0 6px 0 rgba(0,70,140,.18);font-size:20px}
+.scorePill{left:0}.lifePill{right:0}
+.bar{position:absolute;left:5%;right:5%;top:58%;height:12px;background:#1177cf;border:2px solid white;border-radius:20px;overflow:hidden}
+.bar i{display:block;height:100%;width:20%;background:linear-gradient(90deg,#ffd21a,#ff8d00);border-radius:20px}
+.question{position:absolute;left:5%;right:5%;top:77%;min-height:78px;padding:13px 16px;text-align:center;font-size:20px;font-weight:900;color:#082d66;background:white;border-radius:20px;box-shadow:0 6px 0 rgba(0,70,140,.18)}
+.fruit{position:absolute;width:27vw;height:27vw;max-width:118px;max-height:118px;min-width:88px;min-height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:10;touch-action:none;user-select:none;box-shadow:inset 0 -9px 0 rgba(0,0,0,.13),0 9px 15px rgba(0,40,80,.28);border:4px solid rgba(255,255,255,.9);font-size:54px}
+.fruit .label{position:absolute;font-size:17px;font-weight:1000;color:white;text-shadow:0 2px 4px #333;bottom:22px;left:0;right:0;text-align:center}
+.lane0{left:7%}.lane1{left:36.5%}.lane2{left:66%}
+.apple{background:radial-gradient(circle at 35% 25%,#ff6666,#e7192e 60%,#a9001b)}
+.orange{background:radial-gradient(circle at 35% 25%,#ffd34e,#ff9700 65%,#d95c00)}
+.watermelon{background:radial-gradient(circle at 35% 25%,#73ef61,#1db94a 62%,#0c7f2f)}
+.banana{background:radial-gradient(circle at 35% 25%,#fff16a,#ffc400 65%,#df8d00)}
+.grape{background:radial-gradient(circle at 35% 25%,#c884ff,#7834cf 65%,#4b1b99)}
+.fruit.falling{animation:drop var(--dur) linear forwards}
+@keyframes drop{from{transform:translateY(-30vh) rotate(-4deg)}to{transform:translateY(70vh) rotate(16deg)}}
+#mascot{position:absolute;z-index:8;bottom:0;left:50%;transform:translateX(-50%);width:47%;max-width:310px;min-width:230px;filter:drop-shadow(0 12px 10px rgba(0,0,0,.25));transition:transform .25s}
+#mascot img{width:100%;display:block}
+#knife{position:absolute;z-index:20;bottom:25%;left:64%;width:90px;height:26px;background:linear-gradient(#fff,#cfd6de);clip-path:polygon(0 25%,100% 0,82% 100%,0 75%);transform-origin:10% 50%;filter:drop-shadow(0 3px 3px #555);pointer-events:none}
+#knife:before{content:"";position:absolute;left:-22px;top:2px;width:25px;height:22px;background:#6b3f24;border-radius:5px}
+.sliceFX{position:absolute;z-index:30;font-size:42px;pointer-events:none;animation:fx .7s ease-out forwards}
+@keyframes fx{from{transform:scale(.5) rotate(0);opacity:1}to{transform:scale(1.6) translateY(-30px) rotate(25deg);opacity:0}}
+#pause{right:0;top:0;width:46px;height:46px;border:0;border-radius:50%;background:#20b5ff;color:white;font-weight:900;z-index:9}
+/* result overlay */
+.overlay{position:absolute;inset:0;background:rgba(0,30,80,.22);z-index:50}
+.resultCard{position:absolute;left:8%;right:8%;top:20%;bottom:12%;padding:26px;text-align:center}
+.resultCard h1{font-size:42px;margin:4px 0 20px;color:#ff2b75;text-shadow:0 4px 0 white}
+.resultCard .stats{display:flex;justify-content:space-around;background:#eef9ff;border-radius:18px;padding:15px;margin:10px 0 20px;font-weight:900;color:#153f7b}
+.action{width:82%;height:62px;border:0;border-radius:32px;color:white;font-size:23px;font-weight:1000;margin:7px;box-shadow:0 6px 0 rgba(0,0,0,.22)}
+.playAgain{background:linear-gradient(#ffb52d,#ff5c00)}.homeAction{background:linear-gradient(#4aaeff,#0867dc)}
+/* generic */
+@media(max-height:700px){.question{font-size:17px;min-height:64px}.scorePill,.lifePill{font-size:16px}.fruit{min-width:76px;min-height:76px}.fruit .label{font-size:14px}.resultCard h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div id="app">
+<section id="splash" class="screen active"><img class="ref" src="./splash.png"><div class="progress"><i></i></div></section>
+
+<section id="home" class="screen">
+<img class="ref" src="./home.png">
+<button id="playBtn" class="hit homeBtn" aria-label="Play"></button>
+<button id="chooseBtn" class="hit homeBtn" aria-label="Choose animal"></button>
+<button id="learnBtn" class="hit" aria-label="Learn"></button><button id="statsBtn" class="hit"></button><button id="howBtn" class="hit"></button><button id="moreBtn" class="hit"></button>
+</section>
+
+<section id="animals" class="screen">
+<img class="ref" src="./animals.png">
+<div id="animalGrid">
+<button class="hit animalHit r1 c1" data-animal="Lion"></button><button class="hit animalHit r1 c2" data-animal="Tiger"></button><button class="hit animalHit r1 c3" data-animal="Panda"></button>
+<button class="hit animalHit r2 c1" data-animal="Elephant"></button><button class="hit animalHit r2 c2" data-animal="Bunny"></button><button class="hit animalHit r2 c3" data-animal="Monkey"></button>
+<button class="hit animalHit r3 c1" data-animal="Fox"></button><button class="hit animalHit r3 c2" data-animal="Koala"></button><button class="hit animalHit r3 c3" data-animal="Frog"></button>
+<button class="hit animalHit r4 c1" data-animal="Puppy"></button><button class="hit animalHit r4 c2" data-animal="Kitten"></button><button class="hit animalHit r4 c3" data-animal="Unicorn"></button>
+</div>
+<button id="doneBtn" class="hit" aria-label="Done"></button>
+</section>
+
+<section id="game" class="screen">
+<div class="gameScene"></div>
+<div class="gameTop"><div class="scorePill">⭐ <span id="score">0</span></div><div class="lifePill">❤️ <span id="lives">3</span></div><div class="bar"><i id="progress"></i></div><div class="question" id="question">Get ready!</div><button id="pause">Ⅱ</button></div>
+<div id="fruits"></div>
+<div id="mascot"><img src="./lion.png" alt="Lion mascot"></div><div id="knife"></div>
+</section>
+
+<section id="result" class="screen">
+<img class="ref" src="./result.png">
+<div class="overlay"></div>
+<div class="resultCard glass">
+<h1>Great Job!</h1>
+<div class="stats"><span>⭐ <b id="rStars">0</b><br>Stars</span><span>❤️ <b id="rLives">0</b><br>Lives</span><span>🎯 <b id="rScore">0</b><br>Score</span></div>
+<p style="font-size:20px;font-weight:900;color:#16477e">Keep going!<br>You're doing amazing! 🌟</p>
+<button class="action playAgain" id="again">↻ Play Again</button><br><button class="action homeAction" id="goHome">⌂ Home</button>
+</div>
+</section>
+</div>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const screens=$$('.screen');
+function show(id){screens.forEach(x=>x.classList.toggle('active',x.id===id))}
+let animal='Lion',score=0,lives=3,round=0,active=false,token=0,used=[];
+const facts=[
+["What force pulls things towards Earth?","Gravity","Wind","Light"],
+["What is the currency of India?","Rupee","Dollar","Pound"],
+["Which direction does the Sun rise from?","East","West","North"],
+["What appliance keeps food cold?","Refrigerator","Oven","Fan"],
+["What do magnets attract strongly?","Iron","Paper","Wood"],
+["Which planet is known as the Red Planet?","Mars","Venus","Jupiter"],
+["How many legs does a spider have?","Eight","Six","Four"],
+["What gas do humans need to breathe?","Oxygen","Helium","Carbon dioxide"],
+["Which animal is known as the king of the jungle?","Lion","Rabbit","Panda"],
+["What is 5 + 5?","10","12","15"],
+["Which ocean is the largest?","Pacific Ocean","Indian Ocean","Arctic Ocean"],
+["How many days are in a week?","Seven","Five","Ten"],
+["Which shape has three sides?","Triangle","Square","Circle"],
+["What do bees make?","Honey","Milk","Bread"],
+["Which bird cannot fly?","Penguin","Eagle","Parrot"],
+["What is frozen water called?","Ice","Steam","Rain"],
+["Which organ pumps blood around the body?","Heart","Lung","Ear"],
+["How many colors are in a rainbow?","Seven","Five","Ten"],
+["Which fruit is yellow and curved?","Banana","Apple","Grape"],
+["What do plants need from the Sun?","Light","Ice","Salt"],
+["Which is the fastest land animal?","Cheetah","Elephant","Turtle"],
+["How many months are in a year?","Twelve","Ten","Eight"],
+["Which star is closest to Earth?","Sun","Sirius","Polaris"],
+["What is a baby dog called?","Puppy","Kitten","Calf"],
+["Which continent is India in?","Asia","Europe","Africa"],
+["What do we use to tell time?","Clock","Spoon","Plate"],
+["Which animal has a long trunk?","Elephant","Tiger","Frog"],
+["What is 10 - 3?","7","6","8"],
+["Which season is usually the coldest?","Winter","Summer","Spring"],
+["Which part of a plant absorbs water?","Roots","Flower","Fruit"],
+["What is the largest animal on Earth?","Blue whale","Lion","Giraffe"],
+["Which planet do we live on?","Earth","Mars","Saturn"],
+["What do cows give us?","Milk","Juice","Honey"],
+["How many fingers are on one hand?","Five","Four","Six"],
+["Which insect has colorful wings?","Butterfly","Ant","Beetle"],
+["What is the opposite of hot?","Cold","Tall","Fast"],
+["Which animal says 'meow'?","Cat","Dog","Cow"],
+["What do we call water falling from clouds?","Rain","Smoke","Dust"],
+["Which is a primary color?","Blue","Pink","Brown"],
+["What do you use to see?","Eyes","Ears","Nose"],
+["Which animal lives in a hive?","Bee","Fish","Horse"],
+["What is 2 × 5?","10","7","12"],
+["Which planet has rings?","Saturn","Mercury","Earth"],
+["What is the hard outer part of an egg called?","Shell","Skin","Bark"],
+["Which animal is famous for black and white stripes?","Zebra","Camel","Fox"],
+["What do fish use to breathe in water?","Gills","Wings","Fur"],
+["Which is bigger?","Elephant","Mouse","Ant"],
+["What is the opposite of day?","Night","Noon","Morning"],
+["Which fruit is often red and has seeds on its skin?","Strawberry","Banana","Orange"],
+["How many sides does a square have?","Four","Three","Five"],
+["Which country is famous for the Taj Mahal?","India","Japan","Brazil"],
+["What is the nearest planet to the Sun?","Mercury","Earth","Neptune"],
+["What do birds use to fly?","Wings","Fins","Paws"],
+["Which animal can change its color to hide?","Chameleon","Cow","Horse"],
+["What is 20 divided by 2?","10","5","20"],
+["Which is a natural satellite of Earth?","Moon","Sun","Mars"],
+["What is the tallest land animal?","Giraffe","Tiger","Rabbit"],
+["What do we call a group of stars forming a pattern?","Constellation","Rainbow","Cloud"],
+["Which material is usually transparent?","Glass","Stone","Wood"],
+["What is the boiling point of water in Celsius?","100°C","50°C","10°C"],
+["Which animal has a pouch for its baby?","Kangaroo","Lion","Panda"],
+["What is 9 + 1?","10","11","8"],
+["Which body part helps you hear?","Ears","Eyes","Hands"],
+["What do plants release during photosynthesis?","Oxygen","Smoke","Sand"],
+["Which planet is famous for being the largest?","Jupiter","Mars","Mercury"],
+["What is a baby cat called?","Kitten","Puppy","Cub"],
+["Which is a mammal?","Dolphin","Shark","Trout"],
+["What do we call melted rock below Earth's surface?","Magma","Ice","Clay"],
+["Which instrument has black and white keys?","Piano","Drum","Flute"],
+["How many hours are in a day?","24","12","48"],
+["Which animal is the largest bird?","Ostrich","Sparrow","Parrot"],
+["What is the color of grass usually?","Green","Purple","Blue"],
+["Which sense uses your nose?","Smell","Sight","Hearing"],
+["What is 7 + 3?","10","9","12"],
+["Which planet is closest in size to Earth?","Venus","Jupiter","Saturn"],
+["What do we call a scientist who studies space?","Astronomer","Chef","Pilot"],
+["Which animal is known for its black-and-white pattern and bamboo diet?","Panda","Lion","Horse"],
+["What is the opposite of big?","Small","Wide","Heavy"],
+["Which liquid do humans need to drink every day?","Water","Oil","Paint"],
+["What do we call the colorful arc seen after rain?","Rainbow","Shadow","Cloud"],
+["Which part of a flower attracts many bees?","Petals","Roots","Stem"],
+["How many wheels does a bicycle have?","Two","Three","Four"],
+["Which is hotter?","Sun","Ice cube","Snow"],
+["What do we call a person who flies an airplane?","Pilot","Doctor","Farmer"],
+["Which animal has a shell?","Turtle","Tiger","Deer"],
+["What is 6 × 2?","12","8","14"],
+["Which direction is opposite to north?","South","East","West"],
+["What do you call a house for a dog?","Kennel","Nest","Stable"],
+["Which food is made from wheat and baked?","Bread","Yogurt","Honey"],
+["What is Earth's shape approximately?","Round","Flat","Square"],
+["Which animal is famous for building dams?","Beaver","Lion","Goat"],
+["What is 15 - 5?","10","5","20"],
+["Which gas makes up most of Earth's atmosphere?","Nitrogen","Oxygen","Hydrogen"],
+["What do we call water vapor turning into liquid?","Condensation","Melting","Freezing"],
+["Which is the smallest prime number?","2","1","3"],
+["What is a baby cow called?","Calf","Foal","Lamb"],
+["Which country has a maple leaf on its flag?","Canada","India","Egypt"],
+["What is the largest continent?","Asia","Europe","Australia"],
+["Which animal is known for carrying a home on its back?","Snail","Horse","Dog"],
+["What is 8 + 2?","10","12","9"],
+["Which planet is known for its beautiful blue color and strong winds?","Neptune","Mars","Mercury"]
+];
+// Generate 1000+ friendly variants from the curated facts.
+const templates=[
+q=>q, q=>q.replace("?","? Quick one!"), q=>q.replace("?","? Super question!"),
+q=>q.replace("?","? Can you solve this?"), q=>q.replace("?","? Fun GK!"),
+q=>q.replace("?","? Brain booster!"), q=>q.replace("?","? Let's find out!"),
+q=>q.replace("?","? Ready, champ?"), q=>q.replace("?","? Your turn!"), q=>q.replace("?","? Think carefully!")
+];
+const questions=[];
+for(let i=0;i<11;i++) for(const f of facts) questions.push({q:templates[i%templates.length](f[0]),a:[f[1],f[2],f[3]]});
+function pickQuestion(){
+ let pool=questions.filter((_,i)=>!used.includes(i));
+ if(pool.length<20) used=[];
+ let idx;
+ do idx=Math.floor(Math.random()*questions.length); while(used.includes(idx));
+ used.push(idx); return questions[idx];
+}
+function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
+const fruitTypes=[['🍎','apple'],['🍊','orange'],['🍉','watermelon'],['🍌','banana'],['🍇','grape']];
+function setMascotMotion(kind){const m=$('#mascot');m.style.transform=kind==='hit'?'translateX(-50%) scale(1.12) rotate(-3deg)':'translateX(-50%)';setTimeout(()=>m.style.transform='translateX(-50%)',300)}
+function fx(x,y,good=true){
+ const e=document.createElement('div');e.className='sliceFX';e.textContent=good?'✨💥':'💦💔';e.style.left=x+'px';e.style.top=y+'px';document.body.appendChild(e);setTimeout(()=>e.remove(),750);
+}
+function makeFruits(){
+ const holder=$('#fruits');holder.innerHTML=''; token++;
+ const my=pickQuestion(); const answers=shuffle(my.a); $('#question').textContent=my.q;
+ $('#progress').style.width=Math.min(100,18+round*4)+'%';
+ answers.forEach((ans,i)=>{
+   const el=document.createElement('div'); const ft=fruitTypes[(round+i)%fruitTypes.length];
+   el.className=`fruit lane${i} ${ft[1]} falling`;el.style.top='-15vh';el.style.setProperty('--dur',(7.5+Math.random()*1.4)+'s');
+   el.innerHTML=`<span style="font-size:54px">${ft[0]}</span><span class="label">${ans}</span>`;
+   el.dataset.answer=ans; el.dataset.token=token; holder.appendChild(el);
+   el.addEventListener('pointerdown',e=>{e.preventDefault(); slice(el,my.a[0]===ans,my.a[0]);},{passive:false});
+ });
+}
+function slice(el,correct,answer){
+ if(!active || el.dataset.token!=token)return;
+ active=false; const r=el.getBoundingClientRect(); fx(r.left+r.width/2,r.top+10,correct); setMascotMotion('hit');
+ $('#knife').animate([{transform:'rotate(-10deg)'},{transform:'rotate(-55deg) translateX(15px)'},{transform:'rotate(5deg)'}],{duration:380,easing:'cubic-bezier(.2,.8,.2,1)'});
+ el.style.transition='transform .25s,opacity .25s';el.style.transform='scale(1.25) rotate(35deg)';el.style.opacity='0';
+ if(correct){score+=10;round++;}else{lives--;round++;}
+ $('#score').textContent=score;$('#lives').textContent=lives;
+ setTimeout(()=>{if(lives<=0||round>=10) finish();else {active=true;makeFruits()}},650);
+}
+function startGame(){score=0;lives=3;round=0;used=[];$('#score').textContent=0;$('#lives').textContent=3;show('game');setTimeout(()=>{active=true;makeFruits()},450)}
+function finish(){$('#rStars').textContent=score/10;$('#rLives').textContent=lives;$('#rScore').textContent=round?Math.round(score/round*10)/10:0;show('result');active=false}
+$$('[data-animal]').forEach(b=>b.addEventListener('click',()=>{animal=b.dataset.animal;$$('[data-animal]').forEach(x=>x.classList.remove('selectedPulse'));b.classList.add('selectedPulse');setTimeout(()=>show('home'),250)}));
+$('#doneBtn').onclick=()=>show('home'); $('#playBtn').onclick=startGame; $('#chooseBtn').onclick=()=>show('animals'); $('#again').onclick=startGame; $('#goHome').onclick=()=>show('home');
+$('#pause').onclick=()=>{active=!active;$('#pause').textContent=active?'Ⅱ':'▶'};
+setTimeout(()=>show('home'),1900);
+</script>
+</body></html>
