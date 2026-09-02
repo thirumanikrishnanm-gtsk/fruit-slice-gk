@@ -1,1 +1,31 @@
-{"id":"./","name":"Fruit Slice GK","short_name":"Fruit Slice GK","description":"A colorful, kid-friendly GK fruit slicing game.","start_url":"./","scope":"./","display":"standalone","display_override":["standalone","fullscreen"],"orientation":"portrait","theme_color":"#67ddff","background_color":"#67ddff","lang":"en","icons":[{"src":"./icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},{"src":"./icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]}
+{
+  "id": "./",
+  "name": "Fruit Slice GK",
+  "short_name": "Fruit Slice GK",
+  "description": "A colorful GK fruit slicing game for kids.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "fullscreen"
+  ],
+  "orientation": "portrait",
+  "theme_color": "#12a9f4",
+  "background_color": "#12a9f4",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
